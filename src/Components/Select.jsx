@@ -1,4 +1,4 @@
-export default function Select( clases, arial_label, tamano, habilitado = true, opcion = false ){
+export default function Select( clases, arial_label, tamano, habilitado = true, opcion = false, opciones = [] ){
     return (
         <select className={clases} aria-label={arial_label} size={tamano} disabled={habilitado} multiple={!opcion}>
             <option value="">{texto}</option>
