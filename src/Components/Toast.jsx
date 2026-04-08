@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Toast, ToastContainer, Button } from "react-bootstrap";
 
-export default function ToastSimple() {
+export default function ToastComponent() {
   const [show, setShow] = useState(false);
 
   return (
