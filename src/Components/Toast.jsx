@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Toast, ToastContainer, Button } from "react-bootstrap";
 
-const ToastComponent = () => {
+export default function ToastSimple() {
   const [show, setShow] = useState(false);
 
   return (
@@ -10,24 +10,11 @@ const ToastComponent = () => {
         Mostrar Toast
       </Button>
 
-      <ToastContainer position="top-end" className="p-3">
-        <Toast
-          show={show}
-          onClose={() => setShow(false)}
-          delay={3000}
-          autohide
-        >
-          <Toast.Header>
-            <strong className="me-auto">Notificación</strong>
-            <small>Ahora</small>
-          </Toast.Header>
-          <Toast.Body>
-            Este es un Toast con React Bootstrap 🚀
-          </Toast.Body>
+      <ToastContainer position="top-end">
+        <Toast show={show} onClose={() => setShow(false)} autohide delay={2500}>
+          <Toast.Body>Acción realizada</Toast.Body>
         </Toast>
       </ToastContainer>
     </>
   );
-};
-
-export default ToastComponent;
+}
