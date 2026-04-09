@@ -1,4 +1,4 @@
-import CTable from '../components/CTable';
+import CTable from '../Components/CTable';
 
 const estudiantesColumns = ["#", "Nombre", "Carrera", "Nota"];
 const estudiantesRows = [

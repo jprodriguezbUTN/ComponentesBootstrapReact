@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Spinner from "../Components/Snipper";
+import Spinner from "../Components/Snipper.jsx";
 
 export default function PSpinner() {
   const [loginLoading, setLoginLoading] = useState(false);

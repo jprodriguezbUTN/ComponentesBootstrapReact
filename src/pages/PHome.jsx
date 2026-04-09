@@ -1,3 +1,5 @@
+import Popover from '../Components/PopOvers.jsx';
+
 export default function PHome() {
   return (
     <div className="container mt-5">
