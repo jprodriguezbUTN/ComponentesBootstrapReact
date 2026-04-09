@@ -1,4 +1,5 @@
 import './App.css'
+import Navtabs from "./Components/Navtabs.jsx";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import 'bootstrap-icons/font/bootstrap-icons.css'
@@ -43,6 +44,21 @@ function App() {
             </div>
           </div>
         </nav>
+
+        <Navtabs variant="nav-tabs">
+          <li className="nav-item">
+            <a className="nav-link active">Active</a>
+          </li>
+          <li className="nav-item">
+            <a className="nav-link">Link</a>
+          </li>
+          <li className="nav-item">
+            <a className="nav-link">Link</a>
+          </li>
+          <li className="nav-item">
+            <a className="nav-link disabled">Disabled</a>
+          </li>
+        </Navtabs>
 
         <Routes>
           <Route path="/" element={<PHome />} />
