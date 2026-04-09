@@ -4,6 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import 'bootstrap-icons/font/bootstrap-icons.css'
 import Collapse from './Components/Collapse';
+import { NavLink } from "react-router-dom";
 
 import React, { Suspense } from "react";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
@@ -38,32 +39,95 @@ function App() {
             </button>
 
             <div className="collapse navbar-collapse" id="navbarNav">
-              <Navtabs variant="nav-tabs">
+              <Navtabs variant="nav-pills" extraClasses="nav-fill">
                 <li className="nav-item">
-                  <Link className="nav-link" to="/">
-                    <i className="bi bi-house-fill"></i> Home
-                    <span className="badge bg-success ms-2">Activo</span>
-                  </Link>
+                  <NavLink
+                    to="/"
+                    className={({ isActive }) =>
+                      `nav-link ${isActive ? "active" : ""}`
+                    }
+                  >
+                    {({ isActive }) => (
+                      <>
+                        <i className="bi bi-house-fill"></i> Home
+                        {isActive && (
+                          <span className="badge bg-success ms-2">Activo</span>
+                        )}
+                      </>
+                    )}
+                  </NavLink>
                 </li>
+
                 <li className="nav-item">
-                  <Link className="nav-link" to="/table">
-                    Table
-                  </Link>
+                  <NavLink
+                    to="/table"
+                    className={({ isActive }) =>
+                      `nav-link ${isActive ? "active" : ""}`
+                    }
+                  >
+                    {({ isActive }) => (
+                      <>
+                        Table
+                        {isActive && (
+                          <span className="badge bg-success ms-2">Activo</span>
+                        )}
+                      </>
+                    )}
+                  </NavLink>
                 </li>
+
                 <li className="nav-item">
-                  <Link className="nav-link" to="/datalist">
-                    Datalist
-                  </Link>
+                  <NavLink
+                    to="/datalist"
+                    className={({ isActive }) =>
+                      `nav-link ${isActive ? "active" : ""}`
+                    }
+                  >
+                    {({ isActive }) => (
+                      <>
+                        Datalist
+                        {isActive && (
+                          <span className="badge bg-success ms-2">Activo</span>
+                        )}
+                      </>
+                    )}
+                  </NavLink>
                 </li>
+
                 <li className="nav-item">
-                  <Link className="nav-link" to="/Progress">
-                    Progress
-                  </Link>
+                  <NavLink
+                    to="/Progress"
+                    className={({ isActive }) =>
+                      `nav-link ${isActive ? "active" : ""}`
+                    }
+                  >
+                    {({ isActive }) => (
+                      <>
+                        Progress
+                        {isActive && (
+                          <span className="badge bg-success ms-2">Activo</span>
+                        )}
+                      </>
+                    )}
+                  </NavLink>
                 </li>
-                <li>
-                  <Link className="nav-link" to="/navtab">
-                    Navtab
-                  </Link>
+
+                <li className="nav-item">
+                  <NavLink
+                    to="/navtab"
+                    className={({ isActive }) =>
+                      `nav-link ${isActive ? "active" : ""}`
+                    }
+                  >
+                    {({ isActive }) => (
+                      <>
+                        Navtab
+                        {isActive && (
+                          <span className="badge bg-success ms-2">Activo</span>
+                        )}
+                      </>
+                    )}
+                  </NavLink>
                 </li>
               </Navtabs>
             </div>
