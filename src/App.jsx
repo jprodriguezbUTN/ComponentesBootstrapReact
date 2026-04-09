@@ -8,6 +8,7 @@ import React, { Suspense } from "react";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 
 const PHome = React.lazy(() => import('./pages/PHome.jsx'));
+const PTable = React.lazy(() => import('./pages/PTable.jsx'));
 
 function App() {
   return (
@@ -40,6 +41,11 @@ function App() {
                     <span className="badge bg-success ms-2">Activo</span>
                   </Link>
                 </li>
+                <li className="nav-item">
+                  <Link className="nav-link" to="/table">
+                    Table
+                  </Link>
+                </li>
               </ul>
             </div>
           </div>
@@ -62,6 +68,7 @@ function App() {
 
         <Routes>
           <Route path="/" element={<PHome />} />
+          <Route path="/table" element={<PTable />} />
         </Routes>
       </Suspense>
     </BrowserRouter>
