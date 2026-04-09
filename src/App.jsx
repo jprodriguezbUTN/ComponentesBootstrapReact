@@ -11,7 +11,7 @@ import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 const PHome = React.lazy(() => import('./pages/PHome.jsx'));
 const PTable = React.lazy(() => import('./pages/PTable.jsx'));
 const PDatalist = React.lazy(() => import('./pages/PDatalist.jsx'));
-
+const PProgress = React.lazy(() => import('./pages/PProgress.jsx'));
 function App() {
   return (
     <BrowserRouter>
@@ -53,6 +53,11 @@ function App() {
                     Datalist
                   </Link>
                 </li>
+                <li className="nav-item">
+                  <Link className="nav-link" to="/Progress">
+                    Progress
+                  </Link>
+                </li>
               </Navtabs>
             </div>
             <Collapse />
@@ -64,6 +69,7 @@ function App() {
           <Route path="/" element={<PHome />} />
           <Route path="/table" element={<PTable />} />
           <Route path="/datalist" element={<PDatalist />} />
+          <Route path="/Progress" element={<PProgress />} />
         </Routes>
       </Suspense>
     </BrowserRouter>
