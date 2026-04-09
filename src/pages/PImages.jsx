@@ -14,7 +14,7 @@ export default function PImages() {
                 <Imagenes url="https://png.pngtree.com/png-vector/20240711/ourlarge/pngtree-beautiful-nature-landscape-png-image_13056143.png"
                     tipo="Normal"
                     clases="Izquierda" />
-                <Imagenes Tamaño Default url="https://png.pngtree.com/png-vector/20240711/ourlarge/pngtree-beautiful-nature-landscape-png-image_13056143.png"
+                <Imagenes url="https://png.pngtree.com/png-vector/20240711/ourlarge/pngtree-beautiful-nature-landscape-png-image_13056143.png"
                     tipo="Normal"
                     clases="Derecha" />
             </section>

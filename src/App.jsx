@@ -88,7 +88,7 @@ function App() {
 
                 <li className="nav-item">
                   <NavLink
-                    to="/Offcanvas"
+                    to="/offcanvas"
                     className={({ isActive }) =>
                       `nav-link ${isActive ? "active" : ""}`
                     }
@@ -214,7 +214,7 @@ function App() {
 
                 <li className="nav-item">
                   <NavLink
-                    to="/PImages"
+                    to="/images"
                     className={({ isActive }) =>
                       `nav-link ${isActive ? "active" : ""}`
                     }
@@ -234,7 +234,7 @@ function App() {
             </div>
           </div>
         </nav>
-          
+
 
         <Routes>
           <Route path="/" element={<PHome />} />
@@ -247,7 +247,7 @@ function App() {
           <Route path="/offcanvas" element={<POffcanvas />} />
           <Route path="/accordion" element={<PAccordion />} />
           <Route path="/card" element={<PCard />} />
-          <Route path="/Images" element={<PImages />} />
+          <Route path="/images" element={<PImages />} />
         </Routes>
       </Suspense>
     </BrowserRouter>
