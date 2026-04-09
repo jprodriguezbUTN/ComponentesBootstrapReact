@@ -10,7 +10,7 @@ export default function PCollapse() {
           
           <h2 className="text-center mb-4">Componente Collapse</h2>
           <p className="text-center text-muted mb-5">
-            El componente Collapse permite mostrar y ocultar contenido de forma animada.
+            El componente Collapse permite mostrar y ocultar contenido de forma animada y bonita
           </p>
 
           <div className="text-center mb-4">
@@ -44,12 +44,6 @@ export default function PCollapse() {
                 </p>
               </div>
             </div>
-          </div>
-
-          <div className="mt-5 text-center">
-            <p className="text-muted small">
-              Este componente fue creado siguiendo el estilo de los demás componentes del proyecto.
-            </p>
           </div>
 
         </div>
