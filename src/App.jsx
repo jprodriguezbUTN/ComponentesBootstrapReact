@@ -14,6 +14,7 @@ import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 const PHome = React.lazy(() => import('./pages/PHome.jsx'));
 const PTable = React.lazy(() => import('./pages/PTable.jsx'));
 const PDatalist = React.lazy(() => import('./pages/PDatalist.jsx'));
+const PSelect = React.lazy(() => import('./pages/PSelect.jsx'));
 const PProgress = React.lazy(() => import('./pages/PProgress.jsx'));
 const PNavtab = React.lazy(() => import('./pages/PNavtab.jsx'));
 const PSpinner = React.lazy(() => import('./pages/PSpinner.jsx'));
@@ -123,6 +124,24 @@ function App() {
 
                 <li className="nav-item">
                   <NavLink
+                    to="/select"
+                    className={({ isActive }) =>
+                      `nav-link ${isActive ? "active" : ""}`
+                    }
+                  >
+                    {({ isActive }) => (
+                      <>
+                        Select
+                        {isActive && (
+                          <span className="badge bg-success ms-2">Activo</span>
+                        )}
+                      </>
+                    )}
+                  </NavLink>
+                </li>
+
+                <li className="nav-item">
+                  <NavLink
                     to="/Progress"
                     className={({ isActive }) =>
                       `nav-link ${isActive ? "active" : ""}`
@@ -221,6 +240,7 @@ function App() {
           <Route path="/" element={<PHome />} />
           <Route path="/table" element={<PTable />} />
           <Route path="/datalist" element={<PDatalist />} />
+          <Route path="/select" element={<PSelect />} />
           <Route path="/Progress" element={<PProgress />} />
           <Route path="/navtab" element={<PNavtab />} />
           <Route path="/spinner" element={<PSpinner />} />

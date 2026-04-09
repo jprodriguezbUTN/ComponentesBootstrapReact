@@ -1,9 +1,7 @@
-export default function Select({ texto, opciones }) {
+export default function Select({ texto, opciones}) {
     return (
         <select className="form control" defaultValue="">
-            {texto && <option value="" disabled>
-                {texto}
-            </option> }
+            {texto && (<option value="" disabled>{texto}</option>)}
              {opciones.map((grupo, index) => (
                 <optgroup key={index} label={grupo.label}>
                     {grupo.options.map((op, i) => (
