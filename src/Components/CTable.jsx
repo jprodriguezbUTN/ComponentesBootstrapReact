@@ -4,31 +4,31 @@ export default function CTable() {
       <h2>Componente Table de Bootstrap</h2>
 
       {/* 1. Tabla básica */}
-      <h5 className="mt-4">Tabla básica</h5>
+      <h5 className="mt-4">1. Tabla básica</h5>
       <table className="table">
         <thead>
           <tr>
-            <th>#</th>
-            <th>Nombre</th>
-            <th>Carrera</th>
-            <th>Nota</th>
+            <th scope="col">#</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Carrera</th>
+            <th scope="col">Nota</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>1</td>
+            <th scope="row">1</th>
             <td>Ana García</td>
             <td>Sistemas</td>
             <td>90</td>
           </tr>
           <tr>
-            <td>2</td>
+            <th scope="row">2</th>
             <td>Luis Pérez</td>
             <td>Informática</td>
             <td>85</td>
           </tr>
           <tr>
-            <td>3</td>
+            <th scope="row">3</th>
             <td>María López</td>
             <td>Sistemas</td>
             <td>92</td>
@@ -36,32 +36,32 @@ export default function CTable() {
         </tbody>
       </table>
 
-      {/* 2. Tabla con striped + hover + bordered */}
-      <h5 className="mt-4">Striped + Hover + Bordered</h5>
+      {/* 2. Modificadores combinados */}
+      <h5 className="mt-4">2. Striped + Hover + Bordered</h5>
       <table className="table table-striped table-hover table-bordered">
         <thead className="table-dark">
           <tr>
-            <th>#</th>
-            <th>Nombre</th>
-            <th>Carrera</th>
-            <th>Nota</th>
+            <th scope="col">#</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Carrera</th>
+            <th scope="col">Nota</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>1</td>
+            <th scope="row">1</th>
             <td>Ana García</td>
             <td>Sistemas</td>
             <td>90</td>
           </tr>
           <tr>
-            <td>2</td>
+            <th scope="row">2</th>
             <td>Luis Pérez</td>
             <td>Informática</td>
             <td>85</td>
           </tr>
           <tr>
-            <td>3</td>
+            <th scope="row">3</th>
             <td>María López</td>
             <td>Sistemas</td>
             <td>92</td>
@@ -70,12 +70,12 @@ export default function CTable() {
       </table>
 
       {/* 3. Variantes de color por fila */}
-      <h5 className="mt-4">Variantes de color por fila</h5>
+      <h5 className="mt-4">3. Variantes de color por fila</h5>
       <table className="table table-bordered">
         <thead>
           <tr>
-            <th>Estado</th>
-            <th>Descripción</th>
+            <th scope="col">Estado</th>
+            <th scope="col">Descripción</th>
           </tr>
         </thead>
         <tbody>
@@ -93,29 +93,29 @@ export default function CTable() {
           </tr>
           <tr className="table-info">
             <td>Pendiente</td>
-            <td>Sin calificación</td>
+            <td>Sin calificación aún</td>
           </tr>
         </tbody>
       </table>
 
       {/* 4. Tabla responsive */}
-      <h5 className="mt-4">Responsive (scroll en mobile)</h5>
+      <h5 className="mt-4">4. Responsive</h5>
       <div className="table-responsive">
         <table className="table table-sm table-striped">
           <thead className="table-primary">
             <tr>
-              <th>#</th>
-              <th>Nombre</th>
-              <th>Carrera</th>
-              <th>Materia</th>
-              <th>Nota</th>
-              <th>Estado</th>
-              <th>Semestre</th>
+              <th scope="col">#</th>
+              <th scope="col">Nombre</th>
+              <th scope="col">Carrera</th>
+              <th scope="col">Materia</th>
+              <th scope="col">Nota</th>
+              <th scope="col">Estado</th>
+              <th scope="col">Semestre</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td>1</td>
+              <th scope="row">1</th>
               <td>Ana García</td>
               <td>Sistemas</td>
               <td>Tecnologías Web</td>
@@ -124,7 +124,7 @@ export default function CTable() {
               <td>3ro</td>
             </tr>
             <tr>
-              <td>2</td>
+              <th scope="row">2</th>
               <td>Luis Pérez</td>
               <td>Informática</td>
               <td>Bases de Datos</td>
@@ -132,40 +132,55 @@ export default function CTable() {
               <td>Aprobado</td>
               <td>4to</td>
             </tr>
+            <tr>
+              <th scope="row">3</th>
+              <td>María López</td>
+              <td>Sistemas</td>
+              <td>Redes</td>
+              <td>92</td>
+              <td>Aprobado</td>
+              <td>3ro</td>
+            </tr>
           </tbody>
         </table>
       </div>
 
-      {/* 5. Caption y table-active */}
-      <h5 className="mt-4">Caption + fila activa</h5>
+      {/* 5. Caption + table-active + tfoot */}
+      <h5 className="mt-4">5. Caption + fila activa + tfoot</h5>
       <table className="table caption-top">
         <caption>Lista de estudiantes destacados</caption>
         <thead>
           <tr>
-            <th>#</th>
-            <th>Nombre</th>
-            <th>Nota</th>
+            <th scope="col">#</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Nota</th>
           </tr>
         </thead>
         <tbody>
           <tr className="table-active">
-            <td>1</td>
+            <th scope="row">1</th>
             <td>Ana García</td>
             <td>92</td>
           </tr>
           <tr>
-            <td>2</td>
+            <th scope="row">2</th>
             <td>Luis Pérez</td>
             <td>85</td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td>María López</td>
+            <td>88</td>
           </tr>
         </tbody>
         <tfoot>
           <tr className="table-group-divider">
             <td colSpan="2">Promedio general</td>
-            <td>88.5</td>
+            <td>88.3</td>
           </tr>
         </tfoot>
       </table>
+
     </div>
   );
 }
