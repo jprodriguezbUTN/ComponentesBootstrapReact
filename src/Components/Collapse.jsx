@@ -15,11 +15,7 @@ export default function Collapse(Texto, AlturaTexto, AnchuraTexto,Colapsado ,Mul
     <div className="mb-4">
       <h5 className="mb-3">Componente Collapse - Bootstrap en React</h5>
       
-      <Buttons 
-       
-        onClick={() => setIsOpen(!isOpen)}>
-        {isOpen ? 'Ocultar contenido' : 'Mostrar contenido'}
-      </Buttons>
+
 
       <div className={`collapse ${isOpen ? 'show' : ''}`}>
         <div className="card card-body">
