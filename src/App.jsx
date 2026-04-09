@@ -22,7 +22,6 @@ const PAccordion = React.lazy(() => import('./pages/PAccordion.jsx'));
 const PCard = React.lazy(() => import('./pages/PCard.jsx'));
 const PImages = React.lazy(() => import('./pages/PImages.jsx'));
 const PAlert = React.lazy(() => import('./pages/PAlert.jsx'));
-const PDropdown = React.lazy(() => import('./pages/PDropdown.jsx'));
 
 function App() {
   return (
@@ -212,47 +211,11 @@ function App() {
                   </NavLink>
                 </li>
 
-                <li className="nav-item">
-                  <NavLink
-                    to="/alert"
-                    className={({ isActive }) =>
-                      `nav-link ${isActive ? "active" : ""}`
-                    }
-                  >
-                    {({ isActive }) => (
-                      <>
-                        Alert
-                        {isActive && (
-                          <span className="badge bg-success ms-2">Activo</span>
-                        )}
-                      </>
-                    )}
-                  </NavLink>
-                </li>
-
-                <li className="nav-item">
-                  <NavLink
-                    to="/dropdown"
-                    className={({ isActive }) =>
-                      `nav-link ${isActive ? "active" : ""}`
-                    }
-                  >
-                    {({ isActive }) => (
-                      <>
-                        Dropdown
-                        {isActive && (
-                          <span className="badge bg-success ms-2">Activo</span>
-                        )}
-                      </>
-                    )}
-                  </NavLink>
-                </li>
               </Navtabs>
             </div>
-            <Collapse />
           </div>
         </nav>
-
+          
 
         <Routes>
           <Route path="/" element={<PHome />} />
@@ -265,8 +228,6 @@ function App() {
           <Route path="/accordion" element={<PAccordion />} />
           <Route path="/card" element={<PCard />} />
           <Route path="/Images" element={<PImages />} />
-          <Route path="/alert" element={<PAlert />} />
-          <Route path="/dropdown" element={<PDropdown />} />
         </Routes>
       </Suspense>
     </BrowserRouter>
