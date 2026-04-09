@@ -5,6 +5,7 @@ import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import 'bootstrap-icons/font/bootstrap-icons.css'
 import Collapse from './Components/Collapse';
 import { NavLink } from "react-router-dom";
+import Modal from './Components/Modal';
 
 import React, { Suspense } from "react";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
@@ -20,6 +21,7 @@ const PAccordion = React.lazy(() => import('./pages/PAccordion.jsx'));
 function App() {
   return (
     <BrowserRouter>
+    <Modal />
       <Suspense fallback={<div className="container mt-4">Cargando...</div>}>
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
           <div className="container">
@@ -27,18 +29,18 @@ function App() {
               Mi Sitio
               <span className="badge bg-info ms-2">v1.0</span>
             </Link>
-
+           <Tooltip text="Abrir menú">
             <button
-              className="navbar-toggler"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#navbarNav"
-              aria-controls="navbarNav"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
-            >
-              <span className="navbar-toggler-icon"></span>
+            className="navbar-toggler"
+             data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+           >
+            <span className="navbar-toggler-icon"></span>
             </button>
+           </Tooltip>
 
             <div className="collapse navbar-collapse" id="navbarNav">
               <Navtabs variant="nav-pills" extraClasses="nav-fill">
