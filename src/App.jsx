@@ -5,6 +5,7 @@ import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import 'bootstrap-icons/font/bootstrap-icons.css'
 import Collapse from './Components/Collapse';
 import { NavLink } from "react-router-dom";
+import Modal from './Components/Modal';
 
 import React, { Suspense } from "react";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
@@ -19,6 +20,7 @@ const PSpinner = React.lazy(() => import('./pages/PSpinner.jsx'));
 function App() {
   return (
     <BrowserRouter>
+    <Modal />
       <Suspense fallback={<div className="container mt-4">Cargando...</div>}>
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
           <div className="container">
