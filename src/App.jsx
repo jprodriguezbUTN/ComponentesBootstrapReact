@@ -13,6 +13,7 @@ const PTable = React.lazy(() => import('./pages/PTable.jsx'));
 const PDatalist = React.lazy(() => import('./pages/PDatalist.jsx'));
 const PProgress = React.lazy(() => import('./pages/PProgress.jsx'));
 const PNavtab = React.lazy(() => import('./pages/PNavtab.jsx'));
+const PDropdown = React.lazy(() => import('./pages/PDropdown.jsx'));
 
 function App() {
   return (
@@ -65,6 +66,11 @@ function App() {
                     Navtab
                   </Link>
                 </li>
+                 <li>
+                  <Link className="nav-link" to="/dropdown">
+                    Dropdown
+                  </Link>
+                </li>
               </Navtabs>
             </div>
             <Collapse />
@@ -78,6 +84,7 @@ function App() {
           <Route path="/datalist" element={<PDatalist />} />
           <Route path="/Progress" element={<PProgress />} />
           <Route path="/navtab" element={<PNavtab />} />
+          <Route path="/dropdown" element={<PDropdown />} />
         </Routes>
       </Suspense>
     </BrowserRouter>
