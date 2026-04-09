@@ -6,7 +6,12 @@ export default function PHome() {
         <div className="col-md-10 mx-auto">
           <h1 className="display-4 mb-4">
             Bienvenidos a Tecnologías y Sistemas Web I
+            <Popover
+            title="Año académico"
+            content="Curso correspondiente al ciclo 2026"
+            >     
             <span className="badge bg-primary ms-3">2026</span>
+            </Popover>
           </h1>
         </div>
       </div>

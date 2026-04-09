@@ -26,18 +26,18 @@ function App() {
               Mi Sitio
               <span className="badge bg-info ms-2">v1.0</span>
             </Link>
-
+           <Tooltip text="Abrir menú">
             <button
-              className="navbar-toggler"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#navbarNav"
-              aria-controls="navbarNav"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
-            >
-              <span className="navbar-toggler-icon"></span>
+            className="navbar-toggler"
+             data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+           >
+            <span className="navbar-toggler-icon"></span>
             </button>
+           </Tooltip>
 
             <div className="collapse navbar-collapse" id="navbarNav">
               <Navtabs variant="nav-pills" extraClasses="nav-fill">
