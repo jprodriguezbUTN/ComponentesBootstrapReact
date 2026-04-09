@@ -1,4 +1,5 @@
 import CTable from '../components/CTable';
+import Datalist from "../Components/Datalist";
 
 const estudiantesColumns = ["#", "Nombre", "Carrera", "Nota"];
 const estudiantesRows = [

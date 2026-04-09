@@ -4,7 +4,9 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import 'bootstrap-icons/font/bootstrap-icons.css'
 import Collapse from './Components/Collapse';
+import Tooltip from './Components/ToolTips.jsx';
 import { NavLink } from "react-router-dom";
+import Modal from './Components/Modal';
 
 import React, { Suspense } from "react";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
@@ -15,11 +17,17 @@ const PDatalist = React.lazy(() => import('./pages/PDatalist.jsx'));
 const PProgress = React.lazy(() => import('./pages/PProgress.jsx'));
 const PNavtab = React.lazy(() => import('./pages/PNavtab.jsx'));
 const PSpinner = React.lazy(() => import('./pages/PSpinner.jsx'));
+<<<<<<< HEAD
 const POffcanvas = React.lazy(() => import('./pages/POffcanvas.jsx'));
+=======
+const PAccordion = React.lazy(() => import('./pages/PAccordion.jsx'));
+const PCard = React.lazy(() => import('./pages/PCard.jsx'));
+>>>>>>> f6206da88e562f2578ea13b5a88b5e774cb6681f
 
 function App() {
   return (
     <BrowserRouter>
+    <Modal />
       <Suspense fallback={<div className="container mt-4">Cargando...</div>}>
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
           <div className="container">
@@ -149,6 +157,24 @@ function App() {
                     )}
                   </NavLink>
                 </li>
+
+                <li className="nav-item">
+                  <NavLink
+                    to="/card"
+                    className={({ isActive }) =>
+                      `nav-link ${isActive ? "active" : ""}`
+                    }
+                  >
+                    {({ isActive }) => (
+                      <>
+                        Card
+                        {isActive && (
+                          <span className="badge bg-success ms-2">Activo</span>
+                        )}
+                      </>
+                    )}
+                  </NavLink>
+                </li>
               </Navtabs>
             </div>
             <Collapse />
@@ -163,7 +189,12 @@ function App() {
           <Route path="/Progress" element={<PProgress />} />
           <Route path="/navtab" element={<PNavtab />} />
           <Route path="/spinner" element={<PSpinner />} />
+<<<<<<< HEAD
           <Route path="/offcanvas" element={<POffcanvas />} />
+=======
+          <Route path="/accordion" element={<PAccordion />} />
+          <Route path="/card" element={<PCard />} />
+>>>>>>> f6206da88e562f2578ea13b5a88b5e774cb6681f
         </Routes>
       </Suspense>
     </BrowserRouter>

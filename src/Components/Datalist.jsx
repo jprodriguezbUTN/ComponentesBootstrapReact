@@ -1,29 +1,30 @@
 import React, { useState } from "react";
 
-function Datalist() {
+function Datalist({ opciones = [], titulo = "Selecciona una opción", id = "lista" }) {
   const [valor, setValor] = useState("");
 
-  const opciones = ["Manzana", "Banano", "Uva", "Piña", "Mango"];
-
   return (
-    <div>
-      <h2>Selecciona una fruta</h2>
+    <div className="mt-4">
+      <h5>{titulo}</h5>
 
       <input
+        className="form-control"
         type="text"
-        list="frutas"
+        list={id}
         value={valor}
         onChange={(e) => setValor(e.target.value)}
-        placeholder="Escribe una fruta..."
+        placeholder="Escribe o selecciona..."
       />
 
-      <datalist id="frutas">
+      <datalist id={id}>
         {opciones.map((opcion, index) => (
           <option key={index} value={opcion} />
         ))}
       </datalist>
 
-      <p>Seleccionaste: {valor}</p>
+      <p className="mt-2">
+        <strong>Seleccionaste:</strong> {valor}
+      </p>
     </div>
   );
 }

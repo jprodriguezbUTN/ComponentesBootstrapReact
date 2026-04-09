@@ -1,22 +1,15 @@
 import Imagenes from "./Images"
 
 export default function Card ({
-
-  url,
-
-  titulo, texto, imgPosicion = "arriba", header, footer, bg="", colorTexto="", align="",
-
+  titulo, texto, header, footer, bg="", colorTexto="", align="",
   children
 }
-
 ) {
   return (
-
     <div className={`card ${bg} ${colorTexto} ${align}`} style={{ width: "18rem" }} >
-
       {header && <div className="card-header">{header}</div>}
 
-      {url && <Imagenes className={`card-img-${imgPosicion}`}></Imagenes>}
+      {children}
       
       <div className="card-body">
         {titulo && <h5 className="card-title">{titulo}</h5>}
