@@ -18,6 +18,7 @@ const PProgress = React.lazy(() => import('./pages/PProgress.jsx'));
 const PNavtab = React.lazy(() => import('./pages/PNavtab.jsx'));
 const PSpinner = React.lazy(() => import('./pages/PSpinner.jsx'));
 const PAccordion = React.lazy(() => import('./pages/PAccordion.jsx'));
+const PCard = React.lazy(() => import('./pages/PCard.jsx'));
 
 function App() {
   return (
@@ -152,6 +153,24 @@ function App() {
                     )}
                   </NavLink>
                 </li>
+
+                <li className="nav-item">
+                  <NavLink
+                    to="/card"
+                    className={({ isActive }) =>
+                      `nav-link ${isActive ? "active" : ""}`
+                    }
+                  >
+                    {({ isActive }) => (
+                      <>
+                        Card
+                        {isActive && (
+                          <span className="badge bg-success ms-2">Activo</span>
+                        )}
+                      </>
+                    )}
+                  </NavLink>
+                </li>
               </Navtabs>
             </div>
             <Collapse />
@@ -167,6 +186,7 @@ function App() {
           <Route path="/navtab" element={<PNavtab />} />
           <Route path="/spinner" element={<PSpinner />} />
           <Route path="/accordion" element={<PAccordion />} />
+          <Route path="/card" element={<PCard />} />
         </Routes>
       </Suspense>
     </BrowserRouter>
