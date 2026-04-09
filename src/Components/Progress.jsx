@@ -1,77 +1,73 @@
 import React, { useState } from 'react';
 
-function Progress() {
-  const [progreso, setProgreso] = useState(20);
+function Progress({ titulo, tipo, url, color }) {
+  const [valor, setValor] = useState(0);
+  const [estado, setEstado] = useState('idlee');
 
-  const ajustarProgreso = (valor) => {
-    setProgreso((prev) => {
-      const nuevoValor = prev + valor;
-      return Math.min(Math.max(nuevoValor, 0), 100);
-    });
+  const manejarAccion = async () => {
+    if (tipo === 'manual') {
+      setValor(prev => Math.min(prev + 10, 100));
+      return;
+    }
+
+    if (tipo === 'descarga') {
+      setEstado('procesando');
+      try {
+        const res = await fetch(url);
+        const reader = res.body.getReader();
+        const total = +res.headers.get('Content-Length');
+        let cargados = 0;
+
+        while (true) {
+          const { done, value } = await reader.read();
+          if (done) break;
+          cargados += value.length;
+          setValor(Math.round((cargados / total) * 100));
+        }
+        setEstado('finalizado');
+      } catch (e) {
+        setEstado('error');
+      }
+    }
   };
 
-  const getVariant = () => {
-    if (progreso < 30) return "bg-danger";
-    if (progreso < 70) return "bg-primary";
-    return "bg-success";
+  const UI = {
+    claseBarra: estado === 'error' ? 'bg-danger' : (valor === 100 ? 'bg-success' : color),
+    etiqueta: tipo === 'manual' ? 'Incrementar' : (estado === 'procesando' ? 'Descargando...' : 'Iniciar Transmisión'),
+    deshabilitado: estado === 'procesando' || (tipo === 'manual' && valor === 100)
   };
 
   return (
-    <div className="container d-flex justify-content-center align-items-center" style={{ minHeight: '70vh' }}>
-      <div className="card shadow-lg border-0" style={{ width: '400px', borderRadius: '15px' }}>
-        <div className="card-body p-4">
-          <div className="text-center mb-4">
-            <h4 className="fw-bold text-secondary">Estado del Sistema</h4>
-            <p className="text-muted small">Gestión de recursos en tiempo real</p>
-          </div>
+    <div className="card shadow-sm border-0 rounded-4 p-4 mb-3">
+      <div className="d-flex justify-content-between align-items-center mb-3">
+        <h6 className="fw-bold mb-0 text-secondary">{titulo}</h6>
+        <span className={`badge ${valor === 100 ? 'bg-success' : 'bg-dark'}`}>{valor}%</span>
+      </div>
 
-          {/* Barra de progreso usando HTML/Bootstrap nativo */}
-          <div className="progress shadow-sm mb-4" style={{ height: '25px', borderRadius: '50px' }}>
-            <div 
-              className={`progress-bar progress-bar-animated progress-bar-striped ${getVariant()}`} 
-              role="progressbar" 
-              style={{ width: `${progreso}%` }} 
-              aria-valuenow={progreso} 
-              aria-valuemin="0" 
-              aria-valuemax="100"
-            ></div>
-          </div>
+      <div className="progress mb-4" style={{ height: '12px', borderRadius: '10px' }}>
+        <div 
+          className={`progress-bar progress-bar-striped progress-bar-animated ${UI.claseBarra}`}
+          style={{ width: `${valor}%`, transition: 'width 0.3s ease' }}
+        ></div>
+      </div>
 
-          <div className="d-flex justify-content-between align-items-center mb-4">
-            <span className="fw-bold fs-4 text-dark">{progreso}%</span>
-            <span className={`badge ${progreso === 100 ? 'bg-success' : 'bg-light text-dark border'}`}>
-              {progreso === 100 ? 'Completado' : 'En proceso'}
-            </span>
-          </div>
+      <div className="d-flex gap-2">
+        <button 
+          className={`btn flex-grow-1 fw-bold ${valor === 100 ? 'btn-success' : 'btn-dark'}`}
+          onClick={manejarAccion}
+          disabled={UI.deshabilitado}
+        >
+          {valor === 100 ? 'Completado' : UI.etiqueta}
+        </button>
 
-          {/* Contenedor de botones (reemplaza a Stack) */}
-          <div className="d-flex gap-2">
-            <button 
-              type="button"
-              className="btn btn-outline-danger w-100 fw-semibold"
-              onClick={() => ajustarProgreso(-10)}
-              disabled={progreso === 0}
-            >
-              − Reducir
-            </button>
-            <button 
-              type="button"
-              className="btn btn-primary w-100 fw-semibold shadow-sm"
-              onClick={() => ajustarProgreso(10)}
-              disabled={progreso === 100}
-            >
-              + Aumentar
-            </button>
-          </div>
-
+        {valor > 0 && estado !== 'procesando' && (
           <button 
-            type="button"
-            className="btn btn-link w-100 mt-3 text-decoration-none text-muted small"
-            onClick={() => setProgreso(0)}
+            className="btn btn-outline-secondary" 
+            onClick={() => { setValor(0); setEstado('idlee'); }}
           >
-            Reiniciar valores
+            Reset
           </button>
-        </div>
+        )}
       </div>
     </div>
   );
