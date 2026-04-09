@@ -35,7 +35,7 @@ function App() {
             </button>
 
             <div className="collapse navbar-collapse" id="navbarNav">
-              <ul className="navbar-nav ms-auto">
+              <Navtabs variant="nav-tabs">
                 <li className="nav-item">
                   <Link className="nav-link" to="/">
                     <i className="bi bi-house-fill"></i> Home
@@ -47,26 +47,12 @@ function App() {
                     Table
                   </Link>
                 </li>
-              </ul>
+              </Navtabs>
             </div>
             <Collapse />
           </div>
         </nav>
 
-        <Navtabs variant="nav-tabs">
-          <li className="nav-item">
-            <a className="nav-link active">Active</a>
-          </li>
-          <li className="nav-item">
-            <a className="nav-link">Link</a>
-          </li>
-          <li className="nav-item">
-            <a className="nav-link">Link</a>
-          </li>
-          <li className="nav-item">
-            <a className="nav-link disabled">Disabled</a>
-          </li>
-        </Navtabs>
 
         <Routes>
           <Route path="/" element={<PHome />} />
