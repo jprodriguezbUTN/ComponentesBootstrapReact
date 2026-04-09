@@ -16,11 +16,8 @@ export default function Collapse(Texto, AlturaTexto, AnchuraTexto,Colapsado ,Mul
       <h5 className="mb-3">Componente Collapse - Bootstrap en React</h5>
       
       <Buttons 
-        texto={Texto}
-        color={Danger}
-        tamano={SmallButton}
-        onClick={() => setIsOpen(!isOpen)}
-      >
+       
+        onClick={() => setIsOpen(!isOpen)}>
         {isOpen ? 'Ocultar contenido' : 'Mostrar contenido'}
       </Buttons>
 
