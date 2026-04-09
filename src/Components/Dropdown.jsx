@@ -1,4 +1,4 @@
-export default function Dropdown({ titulo = "Seleccionar", opciones }) {
+export default function Dropdown({ titulo, opciones = [] }) {
     return (
         <div className="dropdown">
             <button
