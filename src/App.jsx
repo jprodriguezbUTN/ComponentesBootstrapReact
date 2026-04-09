@@ -3,13 +3,15 @@ import Navtabs from "./Components/Navtabs.jsx";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import 'bootstrap-icons/font/bootstrap-icons.css'
-import Collapse from './Components/Collapse'; 
+import Collapse from './Components/Collapse';
 
 import React, { Suspense } from "react";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import PNavtab from './pages/PNavtab.jsx';
 
 const PHome = React.lazy(() => import('./pages/PHome.jsx'));
 const PTable = React.lazy(() => import('./pages/PTable.jsx'));
+const Navtab = React.lazy(() => import('./pages/PNavtab.jsx'));
 
 function App() {
   return (
@@ -47,6 +49,11 @@ function App() {
                     Table
                   </Link>
                 </li>
+                <li className="nav-item">
+                  <Link className="nav-link" to="/navtab">
+                    Navtab
+                  </Link>
+                </li>
               </Navtabs>
             </div>
             <Collapse />
@@ -57,10 +64,11 @@ function App() {
         <Routes>
           <Route path="/" element={<PHome />} />
           <Route path="/table" element={<PTable />} />
+          <Route path="/navtab" element={<PNavtab />} />
         </Routes>
       </Suspense>
     </BrowserRouter>
-    
+
   );
 }
 
