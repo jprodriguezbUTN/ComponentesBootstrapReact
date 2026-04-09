@@ -1,25 +1,31 @@
 import Buttons from "../Components/Buttons";
 
-export default function Offcanvas({ show, onClose, title, children }) {
+export default function Offcanvas({title, children }) {
   return (
-    <div
-      className={`offcanvas offcanvas-start ${show ? "show" : ""}`}
-      tabIndex="-1"
-      style={{ visibility: show ? "visible" : "hidden" }}
-    >
-      <div className="offcanvas-header">
-        <h5 className="offcanvas-title">{title}</h5>
-        <Buttons>
-          texto="Cerrar"
-          color="secundary"
-          tamano=""
-          onClick={onClose}
-        </Buttons>
+    <>
+      <div
+        className="offcanvas offcanvas-start"
+        data-bs-scroll="true"
+        data-bs-backdrop="false"
+        tabIndex={-1}
+        id="offcanvasScrolling"
+        aria-labelledby="offcanvasScrollingLabel"
+      >
+        <div className="offcanvas-header">
+          <h5 className="offcanvas-title" id="offcanvasScrollingLabel">
+            {title}
+          </h5>
+          <button
+            type="button"
+            className="btn-close"
+            data-bs-dismiss="offcanvas"
+            aria-label="Close"
+          />
+        </div>
+        <div className="offcanvas-body">
+          {children}
+        </div>
       </div>
-
-      <div className="offcanvas-body">
-        {children}
-      </div>
-    </div>
+    </>
   );
 }
