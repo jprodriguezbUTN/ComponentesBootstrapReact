@@ -1,28 +1,28 @@
-import './App.css'
+import "./App.css";
 import Navtabs from "./Components/Navtabs.jsx";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
-import 'bootstrap-icons/font/bootstrap-icons.css'
-import Collapse from './Components/Collapse';
-import Tooltip from './Components/ToolTips.jsx';
+import "bootstrap-icons/font/bootstrap-icons.css";
+import Tooltip from "./Components/ToolTips.jsx";
 import { NavLink } from "react-router-dom";
-import Modal from './Components/Modal';
+import Modal from "./Components/Modal";
 
 import React, { Suspense } from "react";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 
-const PHome = React.lazy(() => import('./pages/PHome.jsx'));
-const PTable = React.lazy(() => import('./pages/PTable.jsx'));
-const PDatalist = React.lazy(() => import('./pages/PDatalist.jsx'));
-const PSelect = React.lazy(() => import('./pages/PSelect.jsx'));
-const PProgress = React.lazy(() => import('./pages/PProgress.jsx'));
-const PNavtab = React.lazy(() => import('./pages/PNavtab.jsx'));
-const PSpinner = React.lazy(() => import('./pages/PSpinner.jsx'));
-const POffcanvas = React.lazy(() => import('./pages/POffcanvas.jsx'));
-const PAccordion = React.lazy(() => import('./pages/PAccordion.jsx'));
-const PCard = React.lazy(() => import('./pages/PCard.jsx'));
-const PImages = React.lazy(() => import('./pages/PImages.jsx'));
-const PAlert = React.lazy(() => import('./pages/PAlert.jsx'));
+const PHome = React.lazy(() => import("./pages/PHome.jsx"));
+const PTable = React.lazy(() => import("./pages/PTable.jsx"));
+const PDatalist = React.lazy(() => import("./pages/PDatalist.jsx"));
+const PSelect = React.lazy(() => import("./pages/PSelect.jsx"));
+const PProgress = React.lazy(() => import("./pages/PProgress.jsx"));
+const PNavtab = React.lazy(() => import("./pages/PNavtab.jsx"));
+const PSpinner = React.lazy(() => import("./pages/PSpinner.jsx"));
+const POffcanvas = React.lazy(() => import("./pages/POffcanvas.jsx"));
+const PAccordion = React.lazy(() => import("./pages/PAccordion.jsx"));
+const PCard = React.lazy(() => import("./pages/PCard.jsx"));
+const PImages = React.lazy(() => import("./pages/PImages.jsx"));
+const PAlert = React.lazy(() => import("./pages/PAlert.jsx"));
+const PCollapse = React.lazy(() => import("./pages/PCollapse.jsx"));
 
 function App() {
   return (
@@ -230,11 +230,28 @@ function App() {
                   </NavLink>
                 </li>
 
+                <li className="nav-item">
+                  <NavLink
+                    to="/Collapse"
+                    className={({ isActive }) =>
+                      `nav-link ${isActive ? "active" : ""}`
+                    }
+                  >
+                    {({ isActive }) => (
+                      <>
+                        Collapse
+                        {isActive && (
+                          <span className="badge bg-success ms-2">Activo</span>
+                        )}
+                      </>
+                    )}
+                  </NavLink>
+                </li>
+
               </Navtabs>
             </div>
           </div>
         </nav>
-
 
         <Routes>
           <Route path="/" element={<PHome />} />
@@ -248,10 +265,10 @@ function App() {
           <Route path="/accordion" element={<PAccordion />} />
           <Route path="/card" element={<PCard />} />
           <Route path="/images" element={<PImages />} />
+          <Route path="/Collapse" element={<PCollapse />} />
         </Routes>
       </Suspense>
     </BrowserRouter>
-
   );
 }
 

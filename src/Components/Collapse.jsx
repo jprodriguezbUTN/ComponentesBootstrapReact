@@ -12,11 +12,16 @@ export default function Collapse(Texto, AlturaTexto, AnchuraTexto,Colapsado ,Mul
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="mb-4">
-      <h5 className="mb-3">Componente Collapse - Bootstrap en React</h5>
+    <div className="mb-5">
+      <h5 className="mb-3 text-center">Componente Collapse (Bootstrap en React)</h5>
       
-
-
+      <button 
+        className="btn btn-primary w-100 mb-3"
+        onClick={() => setIsOpen(!isOpen)}
+      >
+        {isOpen ? "Ocultar contenido ▲" : "Mostrar contenido ▼"}
+      </button>
+      
       <div className={`collapse ${isOpen ? 'show' : ''}`}>
         <div className="card card-body">
           <p className="mb-0">
