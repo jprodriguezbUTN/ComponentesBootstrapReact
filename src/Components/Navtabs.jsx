@@ -1,18 +1,23 @@
-export default function Navtabs() {
-    return (
-        <ul className="nav">
-            <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="#">Active</a>
-            </li>
-            <li className="nav-item">
-                <a className="nav-link" href="#">Link</a>
-            </li>
-            <li className="nav-item">
-                <a className="nav-link" href="#">Link</a>
-            </li>
-            <li className="nav-item">
-                <a className="nav-link disabled" aria-disabled="true">Disabled</a>
-            </li>
-        </ul>
-    )
+export default function NavTabs({ 
+    variant = "", 
+    alignment = "" 
+}) {
+  return (
+    <ul className={`nav ${variant} ${alignment}`}>
+      <li className="nav-item">
+        <button className="nav-link active">Active</button>
+      </li>
+      <li className="nav-item">
+        <button className="nav-link">Link</button>
+      </li>
+      <li className="nav-item">
+        <button className="nav-link">Link</button>
+      </li>
+      <li className="nav-item">
+        <button className="nav-link disabled" disabled>
+          Disabled
+        </button>
+      </li>
+    </ul>
+  );
 }
