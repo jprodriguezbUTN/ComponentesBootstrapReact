@@ -17,13 +17,9 @@ const PDatalist = React.lazy(() => import('./pages/PDatalist.jsx'));
 const PProgress = React.lazy(() => import('./pages/PProgress.jsx'));
 const PNavtab = React.lazy(() => import('./pages/PNavtab.jsx'));
 const PSpinner = React.lazy(() => import('./pages/PSpinner.jsx'));
-<<<<<<< HEAD
 const POffcanvas = React.lazy(() => import('./pages/POffcanvas.jsx'));
-=======
 const PAccordion = React.lazy(() => import('./pages/PAccordion.jsx'));
 const PCard = React.lazy(() => import('./pages/PCard.jsx'));
->>>>>>> f6206da88e562f2578ea13b5a88b5e774cb6681f
-
 function App() {
   return (
     <BrowserRouter>
