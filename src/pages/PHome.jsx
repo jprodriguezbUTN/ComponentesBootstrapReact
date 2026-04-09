@@ -1,6 +1,23 @@
 import Popover from '../Components/PopOvers.jsx';
-
+import Select from "../Components/Select";
 export default function PHome() {
+  const opciones = [
+  {
+    label: "Frutas",
+    options: [
+      { value: "manzana", label: "Manzana" },
+      { value: "banana", label: "Banana" }
+    ]
+  },
+  {
+    label: "Verduras",
+    options: [
+      { value: "zanahoria", label: "Zanahoria" },
+      { value: "lechuga", label: "Lechuga" }
+    ]
+  }
+];
+
   return (
     <div className="container mt-5">
 
@@ -8,12 +25,7 @@ export default function PHome() {
         <div className="col-md-10 mx-auto">
           <h1 className="display-4 mb-4">
             Bienvenidos a Tecnologías y Sistemas Web I
-            <Popover
-            title="Año académico"
-            content="Curso correspondiente al ciclo 2026"
-            >     
             <span className="badge bg-primary ms-3">2026</span>
-            </Popover>
           </h1>
         </div>
       </div>
@@ -81,6 +93,7 @@ export default function PHome() {
           <h4 className="mb-3">
             <i className="bi bi-list-check"></i> Temas a Explorar
           </h4>
+           <Select texto="Seleccione una opción" opciones={opciones} />
           <div className="list-group">
             <div className="list-group-item d-flex justify-content-between align-items-center">
               <span>
