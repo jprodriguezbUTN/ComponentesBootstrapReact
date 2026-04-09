@@ -10,6 +10,7 @@ import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 
 const PHome = React.lazy(() => import('./pages/PHome.jsx'));
 const PTable = React.lazy(() => import('./pages/PTable.jsx'));
+const PDatalist = React.lazy(() => import('./pages/PDatalist.jsx'));
 
 function App() {
   return (
@@ -47,6 +48,11 @@ function App() {
                     Table
                   </Link>
                 </li>
+                <li className="nav-item">
+                  <Link className="nav-link" to="/datalist">
+                    Datalist
+                  </Link>
+                </li>
               </Navtabs>
             </div>
             <Collapse />
@@ -57,6 +63,7 @@ function App() {
         <Routes>
           <Route path="/" element={<PHome />} />
           <Route path="/table" element={<PTable />} />
+          <Route path="/datalist" element={<PDatalist />} />
         </Routes>
       </Suspense>
     </BrowserRouter>
