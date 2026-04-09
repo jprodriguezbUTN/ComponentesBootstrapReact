@@ -189,12 +189,9 @@ function App() {
           <Route path="/Progress" element={<PProgress />} />
           <Route path="/navtab" element={<PNavtab />} />
           <Route path="/spinner" element={<PSpinner />} />
-<<<<<<< HEAD
           <Route path="/offcanvas" element={<POffcanvas />} />
-=======
           <Route path="/accordion" element={<PAccordion />} />
           <Route path="/card" element={<PCard />} />
->>>>>>> f6206da88e562f2578ea13b5a88b5e774cb6681f
         </Routes>
       </Suspense>
     </BrowserRouter>
