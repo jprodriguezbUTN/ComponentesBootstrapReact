@@ -84,6 +84,24 @@ function App() {
 
                 <li className="nav-item">
                   <NavLink
+                    to="/Offcanvas"
+                    className={({ isActive }) =>
+                      `nav-link ${isActive ? "active" : ""}`
+                    }
+                  >
+                    {({ isActive }) => (
+                      <>
+                        Offcanvas
+                        {isActive && (
+                          <span className="badge bg-success ms-2">Activo</span>
+                        )}
+                      </>
+                    )}
+                  </NavLink>
+                </li>
+
+                <li className="nav-item">
+                  <NavLink
                     to="/datalist"
                     className={({ isActive }) =>
                       `nav-link ${isActive ? "active" : ""}`
