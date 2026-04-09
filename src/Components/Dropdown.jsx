@@ -1,24 +1,15 @@
-
-export default function Dropdown({ posicion, opciones = [], children }) {
-
-    const posicionesString = {
-        down: "down",
-        up: "dropup",
-        right: "dropend",
-        left: "dropstart"
-    };
-
-    const posicionBootstrap = posicionesString[posicion];
-
+export default function Dropdown({ titulo = "Seleccionar", opciones }) {
     return (
-        <div className={`${posicionBootstrap} d-inline-block`}>
-            <div
+        <div className="dropdown">
+            <button
+                className="btn btn-secondary dropdown-toggle"
+                type="button"
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
-                className="dropdown-toggle-split"
             >
-                {children}
-            </div>
+                {titulo}
+            </button>
+
 
             <ul className="dropdown-menu">
                 {opciones.map((opcion, index) => (

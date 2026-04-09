@@ -1,4 +1,4 @@
-import CTable from '../components/CTable';
+import CTable from '../Components/CTable.jsx';
 import Datalist from "../Components/Datalist";
 
 const estudiantesColumns = ["#", "Nombre", "Carrera", "Nota"];
