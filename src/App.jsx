@@ -20,10 +20,12 @@ const PSpinner = React.lazy(() => import('./pages/PSpinner.jsx'));
 const POffcanvas = React.lazy(() => import('./pages/POffcanvas.jsx'));
 const PAccordion = React.lazy(() => import('./pages/PAccordion.jsx'));
 const PCard = React.lazy(() => import('./pages/PCard.jsx'));
+const PImages = React.lazy(() => import('./pages/PImages.jsx'));
+
 function App() {
   return (
     <BrowserRouter>
-    <Modal />
+      <Modal />
       <Suspense fallback={<div className="container mt-4">Cargando...</div>}>
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
           <div className="container">
@@ -31,18 +33,18 @@ function App() {
               Mi Sitio
               <span className="badge bg-info ms-2">v1.0</span>
             </Link>
-           <Tooltip text="Abrir menú">
-            <button
-            className="navbar-toggler"
-             data-bs-toggle="collapse"
-            data-bs-target="#navbarNav"
-            aria-controls="navbarNav"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-           >
-            <span className="navbar-toggler-icon"></span>
-            </button>
-           </Tooltip>
+            <Tooltip text="Abrir menú">
+              <button
+                className="navbar-toggler"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarNav"
+                aria-controls="navbarNav"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+              >
+                <span className="navbar-toggler-icon"></span>
+              </button>
+            </Tooltip>
 
             <div className="collapse navbar-collapse" id="navbarNav">
               <Navtabs variant="nav-pills" extraClasses="nav-fill">
@@ -189,6 +191,25 @@ function App() {
                     )}
                   </NavLink>
                 </li>
+
+                <li className="nav-item">
+                  <NavLink
+                    to="/PImages"
+                    className={({ isActive }) =>
+                      `nav-link ${isActive ? "active" : ""}`
+                    }
+                  >
+                    {({ isActive }) => (
+                      <>
+                        Images
+                        {isActive && (
+                          <span className="badge bg-success ms-2">Activo</span>
+                        )}
+                      </>
+                    )}
+                  </NavLink>
+                </li>
+
               </Navtabs>
             </div>
             <Collapse />
@@ -206,6 +227,7 @@ function App() {
           <Route path="/offcanvas" element={<POffcanvas />} />
           <Route path="/accordion" element={<PAccordion />} />
           <Route path="/card" element={<PCard />} />
+          <Route path="/Images" element={<PImages />} />
         </Routes>
       </Suspense>
     </BrowserRouter>
