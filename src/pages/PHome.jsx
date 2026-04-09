@@ -1,23 +1,5 @@
 import Popover from '../Components/PopOvers.jsx';
-import Select from "../Components/Select";
 export default function PHome() {
-  const opciones = [
-  {
-    label: "Frutas",
-    options: [
-      { value: "manzana", label: "Manzana" },
-      { value: "banana", label: "Banana" }
-    ]
-  },
-  {
-    label: "Verduras",
-    options: [
-      { value: "zanahoria", label: "Zanahoria" },
-      { value: "lechuga", label: "Lechuga" }
-    ]
-  }
-];
-
   return (
     <div className="container mt-5">
 
@@ -93,7 +75,6 @@ export default function PHome() {
           <h4 className="mb-3">
             <i className="bi bi-list-check"></i> Temas a Explorar
           </h4>
-           <Select texto="Seleccione una opción" opciones={opciones} />
           <div className="list-group">
             <div className="list-group-item d-flex justify-content-between align-items-center">
               <span>
