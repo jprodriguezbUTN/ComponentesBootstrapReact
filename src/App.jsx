@@ -3,6 +3,7 @@ import Navtabs from "./Components/Navtabs.jsx";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import 'bootstrap-icons/font/bootstrap-icons.css'
+import Collapse from './Components/Collapse'; 
 
 import React, { Suspense } from "react";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
@@ -48,6 +49,7 @@ function App() {
                 </li>
               </ul>
             </div>
+            <Collapse />
           </div>
         </nav>
 
@@ -72,6 +74,7 @@ function App() {
         </Routes>
       </Suspense>
     </BrowserRouter>
+    
   );
 }
 
