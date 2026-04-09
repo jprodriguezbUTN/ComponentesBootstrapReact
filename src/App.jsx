@@ -15,6 +15,7 @@ const PDatalist = React.lazy(() => import('./pages/PDatalist.jsx'));
 const PProgress = React.lazy(() => import('./pages/PProgress.jsx'));
 const PNavtab = React.lazy(() => import('./pages/PNavtab.jsx'));
 const PSpinner = React.lazy(() => import('./pages/PSpinner.jsx'));
+const PAccordion = React.lazy(() => import('./pages/PAccordion.jsx'));
 
 function App() {
   return (
@@ -162,6 +163,7 @@ function App() {
           <Route path="/Progress" element={<PProgress />} />
           <Route path="/navtab" element={<PNavtab />} />
           <Route path="/spinner" element={<PSpinner />} />
+          <Route path="/accordion" element={<PAccordion />} />
         </Routes>
       </Suspense>
     </BrowserRouter>
