@@ -1,3 +1,4 @@
+import Popover from '../Components/PopOvers.jsx';
 import Select from "../Components/Select";
 export default function PHome() {
   const opciones = [
