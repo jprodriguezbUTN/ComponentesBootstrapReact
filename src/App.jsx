@@ -21,6 +21,7 @@ const POffcanvas = React.lazy(() => import('./pages/POffcanvas.jsx'));
 const PAccordion = React.lazy(() => import('./pages/PAccordion.jsx'));
 const PCard = React.lazy(() => import('./pages/PCard.jsx'));
 const PImages = React.lazy(() => import('./pages/PImages.jsx'));
+const PAlert = React.lazy(() => import('./pages/PAlert.jsx'));
 
 function App() {
   return (
@@ -210,6 +211,24 @@ function App() {
                   </NavLink>
                 </li>
 
+                <li className="nav-item">
+                  <NavLink
+                    to="/alert"
+                    className={({ isActive }) =>
+                      `nav-link ${isActive ? "active" : ""}`
+                    }
+                  >
+                    {({ isActive }) => (
+                      <>
+                        Alert
+                        {isActive && (
+                          <span className="badge bg-success ms-2">Activo</span>
+                        )}
+                      </>
+                    )}
+                  </NavLink>
+                </li>
+
               </Navtabs>
             </div>
             <Collapse />
@@ -228,6 +247,7 @@ function App() {
           <Route path="/accordion" element={<PAccordion />} />
           <Route path="/card" element={<PCard />} />
           <Route path="/Images" element={<PImages />} />
+          <Route path="/alert" element={<PAlert />} />
         </Routes>
       </Suspense>
     </BrowserRouter>
