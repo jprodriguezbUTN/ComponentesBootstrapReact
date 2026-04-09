@@ -16,6 +16,7 @@ function App() {
           <div className="container">
             <Link className="navbar-brand" to="/">
               Mi Sitio
+              <span className="badge bg-info ms-2">v1.0</span>
             </Link>
 
             <button
@@ -34,7 +35,8 @@ function App() {
               <ul className="navbar-nav ms-auto">
                 <li className="nav-item">
                   <Link className="nav-link" to="/">
-                    Home
+                    <i className="bi bi-house-fill"></i> Home
+                    <span className="badge bg-success ms-2">Activo</span>
                   </Link>
                 </li>
               </ul>
