@@ -3,7 +3,7 @@ import Navtabs from "./Components/Navtabs.jsx";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import 'bootstrap-icons/font/bootstrap-icons.css'
-import Collapse from './Components/Collapse'; 
+import Collapse from './Components/Collapse';
 
 import React, { Suspense } from "react";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
@@ -12,6 +12,8 @@ const PHome = React.lazy(() => import('./pages/PHome.jsx'));
 const PTable = React.lazy(() => import('./pages/PTable.jsx'));
 const PDatalist = React.lazy(() => import('./pages/PDatalist.jsx'));
 const PProgress = React.lazy(() => import('./pages/PProgress.jsx'));
+const PNavtab = React.lazy(() => import('./pages/PNavtab.jsx'));
+
 function App() {
   return (
     <BrowserRouter>
@@ -58,6 +60,11 @@ function App() {
                     Progress
                   </Link>
                 </li>
+                <li>
+                  <Link className="nav-link" to="/navtab">
+                    Navtab
+                  </Link>
+                </li>
               </Navtabs>
             </div>
             <Collapse />
@@ -70,10 +77,11 @@ function App() {
           <Route path="/table" element={<PTable />} />
           <Route path="/datalist" element={<PDatalist />} />
           <Route path="/Progress" element={<PProgress />} />
+          <Route path="/navtab" element={<PNavtab />} />
         </Routes>
       </Suspense>
     </BrowserRouter>
-    
+
   );
 }
 
