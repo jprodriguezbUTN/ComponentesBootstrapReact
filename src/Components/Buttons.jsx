@@ -1,16 +1,19 @@
 export default function Buttons() {
   return (
-    <div className="container mt-5 text-center">
-      <div className="card shadow p-4">
-        <div className="btn-group" role="group" aria-label="Grupo de botones de acciones">
+    <div className="container mt-4 text-center">
 
-          <button type="button" className="btn btn-primary">Inicio</button>
-          <button type="button" className="btn btn-success">Guardar</button>
-          <button type="button" className="btn btn-warning">Editor</button>
-          <button type="button" className="btn btn-danger">Eliminar</button>
+      <h3>Botones</h3>
 
-        </div>
-      </div>
+      <button type="button" class="btn btn-primary m-2">Inicio</button>
+      <button type="button" class="btn btn-success m-2">Guardar</button>
+      <button type="button" class="btn btn-danger btn-lg m-2">Eliminar</button>
+
+      <br />
+
+      <button type="button" class="btn btn-outline-primary m-2">Ver más</button>
+      <button type="button" class="btn btn-secondary m-2" disabled>Bloqueado</button>
+      <button type="button" class="btn btn-outline-dark btn-sm">Cerrar</button>
+
     </div>
   );
 }
