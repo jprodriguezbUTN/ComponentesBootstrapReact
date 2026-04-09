@@ -1,3 +1,5 @@
+import Buttons from "../Components/Buttons";
+
 export default function Offcanvas({ show, onClose, title, children }) {
   return (
     <div
@@ -7,11 +9,12 @@ export default function Offcanvas({ show, onClose, title, children }) {
     >
       <div className="offcanvas-header">
         <h5 className="offcanvas-title">{title}</h5>
-        <button
-          type="button"
-          className="btn-close"
+        <Buttons>
+          texto="Cerrar"
+          color="secundary"
+          tamano=""
           onClick={onClose}
-        ></button>
+        </Buttons>
       </div>
 
       <div className="offcanvas-body">

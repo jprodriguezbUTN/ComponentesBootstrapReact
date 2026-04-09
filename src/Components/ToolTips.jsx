@@ -1,35 +1,25 @@
-function TooltipButton(props) {
-  const {
-    text,
-    tooltip,
-    placement = "top",
-    color = "primary"
-  } = props;
+import { useState } from "react";
+
+export default function Tooltip({
+  children,
+  text,
+  placement = "top"
+}) {
+  const [show, setShow] = useState(false);
 
   return (
-    <button
-      type="button"
-      className={`btn btn-${color} me-2`}
-      data-bs-toggle="tooltip"
-      data-bs-placement={placement}
-      title={tooltip}
+    <span
+      className="tooltip-wrapper"
+      onMouseEnter={() => setShow(true)}
+      onMouseLeave={() => setShow(false)}
     >
-      {text}
-    </button>
-  );
-}
+      {children}
 
-export default function ToolTips() {
-  return (
-    <div className="container mt-4 text-center">
-      <div className="card shadow-sm p-3">
-        <h5 className="mb-4">Tooltips</h5>
-
-        <TooltipButton text="Top" tooltip="Tooltip arriba" />
-        <TooltipButton text="Right" tooltip="Tooltip derecha" placement="right" color="success" />
-        <TooltipButton text="Bottom" tooltip="Tooltip abajo" placement="bottom" color="warning" />
-        <TooltipButton text="Left" tooltip="Tooltip izquierda" placement="left" color="danger" />
-      </div>
-    </div>
+      {show && (
+        <span className={`tooltip-box tooltip-${placement}`}>
+          {text}
+        </span>
+      )}
+    </span>
   );
 }
