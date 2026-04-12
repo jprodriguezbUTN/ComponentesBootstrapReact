@@ -1,31 +1,37 @@
 import { useState } from "react";
 
-const Accordion = ({ items }) => {
-  const [activeIndex, setActiveIndex] = useState(null);
-
-  const handleToggle = (index) => {
-    setActiveIndex(activeIndex === index ? null : index);
-  };
+export default function Accordion({ titulo, contenido }) {
+  const [open, setOpen] = useState(false);
 
   return (
-    <div>
-      {items.map((item, index) => (
-        <div key={index}>
-          
-          <button onClick={() => handleToggle(index)}>
-            {item.title}
-          </button>
+    <div style={{ marginBottom: "10px" }}>
+      
+      <div
+        onClick={() => setOpen(!open)}
+        style={{
+          background: "#222",
+          color: "white",
+          padding: "12px",
+          cursor: "pointer",
+          fontWeight: "bold",
+          borderRadius: "6px"
+        }}
+      >
+        {titulo}
+      </div>
 
-          {activeIndex === index && (
-            <div>
-              <p>{item.content}</p>
-            </div>
-          )}
-
+      {open && (
+        <div
+          style={{
+            padding: "12px",
+            border: "1px solid #ddd",
+            borderRadius: "6px"
+          }}
+        >
+          {contenido}
         </div>
-      ))}
+      )}
+      
     </div>
   );
-};
-
-export default Accordion;
+}

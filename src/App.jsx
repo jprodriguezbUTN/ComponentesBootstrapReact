@@ -214,14 +214,14 @@ function App() {
 
                 <li className="nav-item">
                   <NavLink
-                    to="/images"
+                    to="/accordion"
                     className={({ isActive }) =>
                       `nav-link ${isActive ? "active" : ""}`
                     }
                   >
                     {({ isActive }) => (
                       <>
-                        Images
+                        Accordion
                         {isActive && (
                           <span className="badge bg-success ms-2">Activo</span>
                         )}
