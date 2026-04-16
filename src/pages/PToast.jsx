@@ -1,4 +1,4 @@
-import ToastSimple from "../Components/Toast";
+import ToastComponent from "../Components/Toast";
 
 export default function ToastPage() {
   return (
