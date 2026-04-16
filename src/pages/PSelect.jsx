@@ -1,96 +1,81 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Select from "../Components/Select";
 
-const opciones = [
-  {
-    label: "Frutas",
-    options: [
-      { value: "manzana", label: "Manzana" },
-      { value: "banana", label: "Banana" },
-      { value: "cereza", label: "Cereza" }
-    ]
-  },
-  {
-    label: "Verduras",
-    options: [
-      { value: "zanahoria", label: "Zanahoria" },
-      { value: "lechuga", label: "Lechuga" },
-      { value: "pimiento", label: "Pimiento" }
-    ]
-  }
-];
+export default function PPokemon() {
+  const [pokemonList, setPokemonList] = useState([]);
+  const [selected, setSelected] = useState("");
+  const [pokemonData, setPokemonData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [loadingDetail, setLoadingDetail] = useState(false);
+  const [error, setError] = useState(null);
 
-export default function PSelect() {
-  const [seleccion, setSeleccion] = useState("");
-
-  function handleSelectChange(event) {
-    setSeleccion(event.target.value);
-  }
-
-  function getEtiquetaSeleccionada() {
-    const item = opciones
-      .flatMap((grupo) => grupo.options)
-      .find((opcion) => opcion.value === seleccion);
-
-    return item ? item.label : "Ninguna opción seleccionada";
-  }
-
+  useEffect(() => {
+    const fetchList = async () => {
+      try {
+        const res = await fetch(
+          "https://pokeapi.co/api/v2/pokemon?limit=20"
+        );
+        const data = await res.json();
+        setPokemonList([
+          {
+            label: "Pokémon",
+            options: data.results.map((p) => ({
+              value: p.name,
+              label: p.name,
+            })),
+          },
+        ]);
+      } catch (err) {
+        setError("Error cargando lista");
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchList();
+  }, []);
+  useEffect(() => {
+    if (!selected) return;
+    const fetchPokemon = async () => {
+      setLoadingDetail(true);
+      try {
+        const res = await fetch(
+          `https://pokeapi.co/api/v2/pokemon/${selected}`
+        );
+        const data = await res.json();
+        setPokemonData(data);
+      } catch (err) {
+        setError("Error cargando Pokémon");
+      } finally {
+        setLoadingDetail(false);
+      }
+    };
+    fetchPokemon();
+  }, [selected]);
   return (
     <div className="container mt-5">
-      <h1 className="mb-4">Ejemplo de Select con funciones</h1>
-      <p className="mb-4">
-        Usa el componente <strong>Select</strong> y una función para actualizar el estado cuando cambia la opción.
-      </p>
-
-      <div className="row">
-        <div className="col-12 col-md-8 mx-auto">
-          <div className="card shadow-sm">
-            <div className="card-body">
-              <div className="mb-4">
-                <label htmlFor="demoSelect" className="form-label">
-                  Elige una categoría:
-                </label>
-                <Select
-                  id="demoSelect"
-                  name="demoSelect"
-                  texto="Selecciona una opción"
-                  opciones={opciones}
-                  value={seleccion}
-                  onChange={handleSelectChange}
-                />
-              </div>
-
-              <div className="alert alert-primary">
-                <strong>Seleccionado:</strong> {getEtiquetaSeleccionada()}
-              </div>
-
-              <div className="d-flex flex-wrap gap-2">
-                <button
-                  type="button"
-                  className="btn btn-outline-primary"
-                  onClick={() => setSeleccion("manzana")}
-                >
-                  Seleccionar Manzana
-                </button>
-                <button
-                  type="button"
-                  className="btn btn-outline-success"
-                  onClick={() => setSeleccion("zanahoria")}
-                >
-                  Seleccionar Zanahoria
-                </button>
-                <button
-                  type="button"
-                  className="btn btn-outline-secondary"
-                  onClick={() => setSeleccion("")}
-                >
-                  Limpiar selección
-                </button>
-              </div>
-            </div>
-          </div>
+      <h1>Pokédex</h1>
+      {loading && <p>Cargando lista...</p>}
+      {error && <p style={{ color: "red" }}>{error}</p>}
+      {!loading && (
+        <Select
+          texto="Selecciona un Pokémon"
+          opciones={pokemonList}
+          onChange={(e) => setSelected(e.target.value)}
+        />
+      )}
+      {loadingDetail && <p>Cargando Pokémon</p>}
+      {pokemonData && (
+        <div className="card mt-4 p-3" style={{ maxWidth: "300px" }}>
+          <h3 className="text-capitalize">{pokemonData.name}</h3>
+          <img
+            src={pokemonData.sprites.front_default}
+            alt={pokemonData.name}
+            width="150"
+          />
+          <p>Altura: {pokemonData.height}</p>
+          <p>Peso: {pokemonData.weight}</p>
         </div>
-      </div>
+      )}
     </div>
   );
 }
