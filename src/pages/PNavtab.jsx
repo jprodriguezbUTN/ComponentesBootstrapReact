@@ -1,50 +1,87 @@
 import Navtabs from '../Components/Navtabs.jsx';
 
-const tabsExample = `<Navtabs variant="nav-tabs">
-  <li className="nav-item">
-    <a className="nav-link active">Active</a>
-  </li>
-</Navtabs>`;
+const tabsExample = `<NavTabs
+  tabs={[
+    { label: "Home", to: "/", icon: "bi-house-fill" },
+    { label: "Table", to: "/table" }
+  ]}
+  variant="pills"
+  centered
+/>`;
 
-const baseNav = `<Navtabs>
-    {/*Codigo del navtab*/}
-</Navtabs>`;
+const baseNav = `const baseTabs = [
+  { label: "Active", to: "/" },
+  { label: "Link", to: "/table" },
+  { label: "Link", to: "/datalist" },
+  { label: "Disabled", to: "#", disabled: true }
+];
 
-const tabNav = `<Navtabs variant="nav-tabs">
-    {/*Codigo del navtab*/}
-</Navtabs>`;
+<Navtabs tabs={baseTabs} />`;
 
-const pillNav = `<Navtabs variant="nav-pills">
-    {/*Codigo del navtab*/}
-</Navtabs>`;
+const tabNav = `const tabsTabs = [
+  { label: "Active", to: "/" },
+  { label: "Link", to: "/table" }
+];
 
-const centeredNav = `Navtabs alignment="justify-content-center">
-    {/*Codigo del navtab*/}
-</Navtabs>`;
+<Navtabs tabs={tabsTabs} variant="tabs" />`;
 
-const verticalNav = `Navtabs variant="nav-pills" extraClasses="flex-column">
-    {/*Codigo del navtab*/}
-</Navtabs>`;
+const pillNav = `const pillsTabs = [
+  { label: "Active", to: "/" },
+  { label: "Link", to: "/table" }
+];
 
-const fillNav = `Navtabs variant="nav-pills" extraClasses="nav-fill">
-    {/*Codigo del navtab*/}
-</Navtabs>`;
+<Navtabs tabs={pillsTabs} variant="pills" />`;
 
-const iconNav = `<Navtabs variant="nav-tabs">
-    <li className="nav-item">
-        <a className="nav-link active">
-            <i className="bi bi-house-fill me-2"></i>
-                Home
-        </a>
-    </li>
-    <li className="nav-item">
-        <a className="nav-link">
-            <i className="bi bi-table me-2"></i>
-                Table
-        </a>
-    </li>
-</Navtabs>`;
+const centeredNav = `const tabsTabs = [
+  { label: "Active", to: "/" },
+  { label: "Link", to: "/table" }
+];
 
+<Navtabs tabs={tabsTabs} centered />`;
+
+const verticalNav = `const tabsTabs = [
+  { label: "Active", to: "/" },
+  { label: "Link", to: "/table" }
+];
+
+<Navtabs tabs={tabsTabs} variant="pills" vertical />`;
+
+const fillNav = `<NavTabs
+  tabs={[
+    { label: "Active", to: "/" },
+    { label: "Link", to: "/table" }
+  ]}
+
+<Navtabs tabs={tabsTabs} variant="pills" fill />`;
+
+const iconNav = `const iconTabs = [
+  { label: "Home", to: "/", icon: "bi-house-fill" },
+  { label: "Table", to: "/table", icon: "bi-table" }
+];
+
+<Navtabs tabs={iconTabs} variant="tabs" />`;
+
+const baseTabs = [
+            {label: "Active", to: "/Navtab" },
+            {label: "Link", to: "/table" },
+            {label: "Link", to: "/datalist" },
+            {label: "Disabled", to: "#", disabled: true }
+            ];
+
+const tabsTabs = [
+  { label: "Active", to: "/Navtab" },
+  { label: "Link", to: "/table" }
+];
+
+const pillsTabs = [
+  { label: "Active", to: "/Navtab" },
+  { label: "Link", to: "/table" }
+];
+
+const iconTabs = [
+  { label: "Home", to: "/Navtab", icon: "bi-house-fill" },
+  { label: "Table", to: "/table", icon: "bi-table" }
+];
 
 
 export default function PNavtab() {
@@ -68,20 +105,7 @@ export default function PNavtab() {
                 <h6>
                     Se ve asi:
                 </h6>
-                <Navtabs>
-                    <li className="nav-item">
-                        <a className="nav-link active">Active</a>
-                    </li>
-                    <li className="nav-item">
-                        <a className="nav-link">Link</a>
-                    </li>
-                    <li className="nav-item">
-                        <a className="nav-link">Link</a>
-                    </li>
-                    <li className="nav-item">
-                        <a className="nav-link disabled">Disabled</a>
-                    </li>
-                </Navtabs>
+                <Navtabs tabs={baseTabs} />
             </section>
 
             {/* Tabs */}
@@ -96,14 +120,7 @@ export default function PNavtab() {
                 <h6>
                     Se ve asi:
                 </h6>
-                <Navtabs variant="nav-tabs">
-                    <li className="nav-item">
-                        <a className="nav-link active">Active</a>
-                    </li>
-                    <li className="nav-item">
-                        <a className="nav-link">Link</a>
-                    </li>
-                </Navtabs>
+                <Navtabs tabs={tabsTabs} variant="tabs" />
             </section>
 
             {/* Pills */}
@@ -118,14 +135,7 @@ export default function PNavtab() {
                 <h6>
                     Se ve asi:
                 </h6>
-                <Navtabs variant="nav-pills">
-                    <li className="nav-item">
-                        <a className="nav-link active">Active</a>
-                    </li>
-                    <li className="nav-item">
-                        <a className="nav-link">Link</a>
-                    </li>
-                </Navtabs>
+                <Navtabs tabs={pillsTabs} variant="pills" />
             </section>
 
             {/* Alignment */}
@@ -140,14 +150,7 @@ export default function PNavtab() {
                 <h6>
                     Se ve asi:
                 </h6>
-                <Navtabs alignment="justify-content-center">
-                    <li className="nav-item">
-                        <a className="nav-link active">Center</a>
-                    </li>
-                    <li className="nav-item">
-                        <a className="nav-link">Link</a>
-                    </li>
-                </Navtabs>
+                <Navtabs tabs={tabsTabs} centered />
             </section>
 
             {/* Vertical */}
@@ -162,11 +165,7 @@ export default function PNavtab() {
                 <h6>
                     Se ve asi:
                 </h6>
-                <Navtabs variant="nav-pills" extraClasses="flex-column">
-                    <a className="nav-link active">Vertical</a>
-                    <a className="nav-link">Link</a>
-                    <a className="nav-link">Link</a>
-                </Navtabs>
+                <Navtabs tabs={tabsTabs} variant="pills" vertical />
             </section>
 
             {/* Fill */}
@@ -181,24 +180,14 @@ export default function PNavtab() {
                 <h6>
                     Se ve asi:
                 </h6>
-                <Navtabs variant="nav-pills" extraClasses="nav-fill">
-                    <li className="nav-item">
-                        <a className="nav-link active">Fill</a>
-                    </li>
-                    <li className="nav-item">
-                        <a className="nav-link">Link</a>
-                    </li>
-                </Navtabs>
+                <Navtabs tabs={tabsTabs} variant="pills" fill />
             </section>
 
             {/* Icons */}
             <section className="mb-5">
                 <h4>Con Iconos</h4>
-                <p className="text-muted">
-                    El codigo para iconos se implementa diferente del resto de propiedades, ya que va en la escritura del {`<li>`} y no en el nombre del navtab como otros 
-                </p>
                 <h6>
-                    Se consigue con el codigo: 
+                    Se consigue con el codigo:
                 </h6>
                 <pre className="bg-dark text-light p-3 rounded mt-3 text-start">
                     <code>{iconNav}</code>
@@ -206,20 +195,7 @@ export default function PNavtab() {
                 <h6>
                     Se ve asi:
                 </h6>
-                <Navtabs variant="nav-tabs">
-                    <li className="nav-item">
-                        <a className="nav-link active">
-                            <i className="bi bi-house-fill me-2"></i>
-                            Home
-                        </a>
-                    </li>
-                    <li className="nav-item">
-                        <a className="nav-link">
-                            <i className="bi bi-table me-2"></i>
-                            Table
-                        </a>
-                    </li>
-                </Navtabs>
+                <Navtabs tabs={iconTabs} variant="tabs" />
             </section>
 
             <section className="mb-5">
