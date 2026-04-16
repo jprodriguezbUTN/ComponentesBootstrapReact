@@ -15,8 +15,6 @@ export default function Card ({
         {titulo && <h5 className="card-title">{titulo}</h5>}
 
         {texto && <p className="card-text">{texto}</p>}
-
-        {children}
       </div>
 
       {footer && <div className="card-footer">{footer}</div>} 
