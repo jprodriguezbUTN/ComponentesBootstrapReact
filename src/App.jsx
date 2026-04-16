@@ -24,6 +24,7 @@ const PProgress = React.lazy(() => import("./pages/PProgress.jsx"));
 const PSelect = React.lazy(() => import("./pages/PSelect.jsx"));
 const PSpinner = React.lazy(() => import("./pages/PSpinner.jsx"));
 const PTable = React.lazy(() => import("./pages/PTable.jsx"));
+const PPopoverTooltips = React.lazy(() => import("./pages/PPopoverTooltips.jsx"));
 
 const tabs = [
   { label: "Home", to: "/", icon: "bi-house-fill" },
@@ -41,6 +42,7 @@ const tabs = [
   { label: "Spinner", to: "/spinner" },
   { label: "Table", to: "/table" },
   { label: "Images", to: "/images" },
+  { label: "Popover & Tooltips", to: "/popover-tooltips" },
 ];
 
 function App() {
@@ -94,6 +96,7 @@ function App() {
           <Route path="/select" element={<PSelect />} />
           <Route path="/spinner" element={<PSpinner />} />
           <Route path="/table" element={<PTable />} />
+          <Route path="/popover-tooltips" element={<PPopoverTooltips />} />
         </Routes>
       </Suspense>
     </BrowserRouter>
