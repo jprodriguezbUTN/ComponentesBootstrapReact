@@ -38,6 +38,7 @@ const tabs = [
   { label: "Select", to: "/select" },
   { label: "Spinner", to: "/spinner" },
   { label: "Table", to: "/table" },
+  { label: "Images", to: "/images" },
 ];
 
 function App() {

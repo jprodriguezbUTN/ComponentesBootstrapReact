@@ -1,29 +1,29 @@
-export default function Imagenes({ url, tipo = "Normal", clases, alt = "Imagen no cargada", ancho = "200px", alto = "200px" }) {
-    if (tipo === "Redondo") {
-        if (clases === "Responsivo") {
-            return <img src={url} className="rounded img-fluid" alt={alt} width={ancho} height={alto} />;
-        } else if (clases === "Izquierda") {
-            return <img src={url} className="rounded float-start" alt={alt} width={ancho} height={alto} />;
-        } else if (clases === "Derecha") {
-            return <img src={url} className="rounded float-end" alt={alt} width={ancho} height={alto} />;
-        } else if (clases === "Centro") {
-            return <img src={url} className="rounded mx-auto d-block" alt={alt} width={ancho} height={alto} />;
-        } else if (clases === "Bordes") {
-            return <img src={url} className="rounded img-thumbnail" alt={alt} width={ancho} height={alto} />;
-        }
-    } else if (tipo === "Normal") {
-        if (clases === "Responsivo") {
-            return <img src={url} className="img-fluid" alt={alt} width={ancho} height={alto} />;
-        } else if (clases === "Izquierda") {
-            return <img src={url} className="float-start" alt={alt} width={ancho} height={alto} />;
-        } else if (clases === "Derecha") {
-            return <img src={url} className="float-end" alt={alt} width={ancho} height={alto} />;
-        } else if (clases === "Centro") {
-            return <img src={url} className="mx-auto d-block" alt={alt} width={ancho} height={alto} />;
-        } else if (clases === "Bordes") {
-            return <img src={url} className="img-thumbnail" alt={alt} width={ancho} height={alto} />;
-        } else {
-            return <img src={url} alt={alt} width={ancho} height={alto} />;
-        }
-    }
+export default function Imagenes({
+  url,
+  tipo = "Normal",
+  clases,
+  className = "",
+  alt = "Imagen no cargada",
+  ancho = "200px",
+  alto = "200px",
+}) {
+  const tipoClass = tipo === "Redondo" ? "rounded" : "";
+  const posicionClass = {
+    Responsivo: "img-fluid",
+    Izquierda: "float-start",
+    Derecha: "float-end",
+    Centro: "mx-auto d-block",
+    Bordes: "img-thumbnail",
+  }[clases];
+
+  const classNames = [tipoClass, posicionClass, className].filter(Boolean).join(" ");
+
+  return (
+    <img
+      src={url}
+      alt={alt}
+      className={classNames || undefined}
+      style={{ width: ancho, height: alto }}
+    />
+  );
 }
