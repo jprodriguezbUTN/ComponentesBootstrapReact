@@ -10,6 +10,7 @@ import Modal from "./Components/Modal";
 import React, { Suspense } from "react";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 
+const PCarousel = React.lazy(() => import("./pages/PCarousel.jsx"));
 const PHome = React.lazy(() => import("./pages/PHome.jsx"));
 const PTable = React.lazy(() => import("./pages/PTable.jsx"));
 const PDatalist = React.lazy(() => import("./pages/PDatalist.jsx"));
@@ -257,6 +258,23 @@ function App() {
                     {({ isActive }) => (
                       <>
                         Alert
+                        {isActive && (
+                          <span className="badge bg-success ms-2">Activo</span>
+                        )}
+                      </>
+                    )}
+                  </NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink
+                    to="/carousel"
+                    className={({ isActive }) =>
+                      `nav-link ${isActive ? "active" : ""}`
+                    }
+                  >
+                    {({ isActive }) => (
+                      <>
+                        Carousel
                         {isActive && (
                           <span className="badge bg-success ms-2">Activo</span>
                         )}
