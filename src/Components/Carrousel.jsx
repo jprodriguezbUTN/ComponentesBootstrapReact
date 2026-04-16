@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import Imagenes from "./Images";
-import Botones from "./Botones";
+import Botones from "./Button";
 
 export default function Carousel({
   tiempo = 3000,

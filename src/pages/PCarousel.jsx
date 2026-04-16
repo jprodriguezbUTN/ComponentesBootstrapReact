@@ -1,4 +1,4 @@
-import Carousel from "../Components/Carousel";
+import Carousel from "../Components/Carrousel";
 import Imagenes from "../Components/Images";
 
 export default function PCarousel() {

@@ -29,7 +29,7 @@ const tabs = [
   { label: "Accordion", to: "/accordion" },
   { label: "Alert", to: "/alert" },
   { label: "Card", to: "/card" },
-  { label: "Carousel", to: "/carousel", disabled: true },
+  { label: "Carousel", to: "/carousel",},
   { label: "Collapse", to: "/Collapse" },
   { label: "Datalist", to: "/datalist" },
   { label: "Navtab", to: "/navtab" },
