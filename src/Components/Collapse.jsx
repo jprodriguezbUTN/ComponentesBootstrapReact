@@ -1,41 +1,25 @@
 import { useState } from "react";
 
-export default function Collapse(
-  Texto,
-  AlturaTexto = "300px",
-  AnchuraTexto = "100%",
-  Colapsado = true,
-  MultiCollapso = false,
-  children
-) {
+export default function Collapse({
+  Texto = "Mostrar contenido",
+  TextoEsconder = "Ocultar contenido",
+  children,
+}) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="mb-5">
-      <h5 className="mb-3 text-center">
-        Componente Collapse (Bootstrap en React)
-      </h5>
-
+    <div className="mb-4">
       <button
         className="btn btn-primary w-100 mb-3"
         onClick={() => setIsOpen(!isOpen)}
       >
-        {isOpen ? "Ocultar contenido ▲" : "Mostrar contenido ▼"}
+        {isOpen ? TextoEsconder : Texto}
       </button>
 
-      <div
-        className={`collapse ${isOpen ? "show" : ""}`}
-        style={{
-          maxHeight: AlturaTexto || "none",
-          width: AnchuraTexto || "100%",
-        }}
-      >
+      <div className={`collapse ${isOpen ? "show" : ""}`}>
         <div className="card card-body">
           {children || (
-            <p className="mb-0">
-              Este es el contenido que se colapsa y se expande. Puedes poner
-              aquí texto, imágenes, listas u otros componentes.
-            </p>
+            <p className="text-muted mb-0">No se ha pasado contenido.</p>
           )}
         </div>
       </div>
