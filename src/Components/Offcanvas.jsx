@@ -1,4 +1,4 @@
-import Buttons from "../Components/Buttons";
+import Buttons from "../Components/Button";
 
 export default function Offcanvas({title, children }) {
   return (
