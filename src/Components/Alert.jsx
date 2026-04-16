@@ -1,6 +1,14 @@
-export default function Alert({color,texto}){
-    return (
-        <div class={`alert alert-${color}`} role="alert">{texto}</div>
-    )
+export default function Alert({ 
+  color = "primary", 
+  children, 
+  extraClasses = "" 
+}) {
+  return (
+    <div 
+      className={`alert alert-${color} ${extraClasses}`} 
+      role="alert"
+    >
+      {children}
+    </div>
+  );
 }
-

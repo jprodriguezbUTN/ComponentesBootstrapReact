@@ -247,6 +247,23 @@ function App() {
                     )}
                   </NavLink>
                 </li>
+                <li className="nav-item">
+                  <NavLink
+                    to="/alert"
+                    className={({ isActive }) =>
+                      `nav-link ${isActive ? "active" : ""}`
+                    }
+                  >
+                    {({ isActive }) => (
+                      <>
+                        Alert
+                        {isActive && (
+                          <span className="badge bg-success ms-2">Activo</span>
+                        )}
+                      </>
+                    )}
+                  </NavLink>
+                </li>
 
               </Navtabs>
             </div>
@@ -266,6 +283,7 @@ function App() {
           <Route path="/card" element={<PCard />} />
           <Route path="/images" element={<PImages />} />
           <Route path="/Collapse" element={<PCollapse />} />
+          <Route path="/alert" element={<PAlert />} />
         </Routes>
       </Suspense>
     </BrowserRouter>
