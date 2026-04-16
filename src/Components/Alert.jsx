@@ -1,14 +1,14 @@
-export default function Alert({ 
-  color = "primary", 
-  children, 
-  extraClasses = "" 
+export default function Alert({
+  color = "primary",
+  texto = "",
+  className = "",
+  children,
 }) {
+  const alertaClass = ["alert", `alert-${color}`, className].filter(Boolean).join(" ");
+
   return (
-    <div 
-      className={`alert alert-${color} ${extraClasses}`} 
-      role="alert"
-    >
-      {children}
+    <div className={alertaClass} role="alert">
+      {texto || children}
     </div>
-  );
+  );  
 }
