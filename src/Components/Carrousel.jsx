@@ -1,45 +1,68 @@
+import { useEffect, useRef } from "react";
 import Imagenes from "./Images";
+import Botones from "./Botones";
 
 export default function Carousel({
-  id = "carouselExample",
-  imagenes = []
+  tiempo = 3000,
+  children
 }) {
+  const contenedorRef = useRef(null);
+  const indiceRef = useRef(0);
+
+  const mostrarSlide = (nuevoIndice) => {
+    const slides = contenedorRef.current.querySelectorAll(".carousel-item");
+
+    slides.forEach((slide, index) => {
+      slide.style.display = index === nuevoIndice ? "block" : "none";
+    });
+
+    indiceRef.current = nuevoIndice;
+  };
+
+  const siguiente = () => {
+    const slides = contenedorRef.current.querySelectorAll(".carousel-item");
+    const nuevoIndice =
+      indiceRef.current === slides.length - 1 ? 0 : indiceRef.current + 1;
+
+    mostrarSlide(nuevoIndice);
+  };
+
+  const anterior = () => {
+    const slides = contenedorRef.current.querySelectorAll(".carousel-item");
+    const nuevoIndice =
+      indiceRef.current === 0 ? slides.length - 1 : indiceRef.current - 1;
+
+    mostrarSlide(nuevoIndice);
+  };
+
+  useEffect(() => {
+    const slides = contenedorRef.current.querySelectorAll(".carousel-item");
+
+    if (slides.length > 0) {
+      mostrarSlide(0);
+    }
+
+    const intervalo = setInterval(() => {
+      siguiente();
+    }, tiempo);
+
+    return () => clearInterval(intervalo);
+  }, [tiempo]);
+
   return (
-    <div id={id} className="carousel slide">
-      <div className="carousel-inner">
-        {imagenes.map((img, index) => (
-          <div
-            key={index}
-            className={`carousel-item ${index === 0 ? "active" : ""}`}
-          >
-            <Imagenes
-              url={img.url}
-              clases="d-block w-100"
-              ancho={img.ancho}
-              alto={img.alto}
-              estilo={img.estilo}
-            />
-          </div>
-        ))}
+    <div ref={contenedorRef}>
+
+      {/* CONTENIDO */}
+      <div>
+        {children}
       </div>
 
-      <button
-        className="carousel-control-prev"
-        type="button"
-        data-bs-target={`#${id}`}
-        data-bs-slide="prev"
-      >
-        <span className="carousel-control-prev-icon"></span>
-      </button>
+      {/* BOTONES */}
+      <div>
+        <Botones texto="Anterior" onClick={anterior} />
+        <Botones texto="Siguiente" onClick={siguiente} />
+      </div>
 
-      <button
-        className="carousel-control-next"
-        type="button"
-        data-bs-target={`#${id}`}
-        data-bs-slide="next"
-      >
-        <span className="carousel-control-next-icon"></span>
-      </button>
     </div>
   );
 }
