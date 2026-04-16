@@ -1,53 +1,115 @@
-import { useState } from 'react';
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import Collapse from "../Components/Collapse";
+import Image from "../Components/Images";
 
-export default function PCollapse() {
-  const [isOpen, setIsOpen] = useState(false);
+export default function PPokemon() {
+  const { id } = useParams();
+  const [dataJson, setDataJson] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      setError(null);
+      setDataJson(null);
+
+      try {
+        let url = "https://pokeapi.co/api/v2/pokemon/681";
+        if (id) {
+          url = `https://pokeapi.co/api/v2/pokemon/${id}`;
+        }
+
+        const response = await fetch(url);
+
+        if (!response.ok) {
+          throw new Error("Error al obtener los datos");
+        }
+
+        const data = await response.json();
+        setDataJson(data);
+        console.log("Datos descargados:", data);
+      } catch (err) {
+        setError(err.message || "Error al obtener los datos");
+        setDataJson(null);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, [id]);
 
   return (
-    <div className="container mt-5">
-      <div className="row justify-content-center">
-        <div className="col-lg-8">
-          
-          <h2 className="text-center mb-4">Componente Collapse</h2>
-          <p className="text-center text-muted mb-5">
-            El componente Collapse permite mostrar y ocultar contenido de forma animada y bonita
-          </p>
+    <div className="container mt-5 pb-5">
+      <div className="row mb-5">
+        <div className="col-md-10 mx-auto">
+          <h1 className="display-5 mb-4">
+            <i className="bi bi-fire"></i> Pokedex API
+            <span className="badge bg-danger ms-3">JSON</span>
+          </h1>
+        </div>
+      </div>
 
-          <div className="text-center mb-4">
-            <button 
-              className="btn btn-primary btn-lg"
-              onClick={() => setIsOpen(!isOpen)}
-            >
-              {isOpen ? "Ocultar contenido ▲" : "Mostrar contenido ▼"}
-            </button>
+      {loading && (
+        <div className="row mb-4">
+          <div className="col-md-10 mx-auto">
+            <div className="alert alert-info">
+              <span
+                className="spinner-border spinner-border-sm me-2"
+                role="status"
+                aria-hidden="true"
+              ></span>
+              Cargando datos...
+            </div>
           </div>
+        </div>
+      )}
 
-          <div className={`collapse ${isOpen ? 'show' : ''}`}>
-            <div className="card">
+      {error && (
+        <div className="row mb-4">
+          <div className="col-md-10 mx-auto">
+            <div className="alert alert-danger">Error: {error}</div>
+          </div>
+        </div>
+      )}
+
+      {dataJson && (
+        <div className="row mb-4">
+          <div className="col-md-10 mx-auto">
+            <div className="card border-success">
+              <div className="card-header bg-success text-white">
+                <h5 className="mb-0">📋 Datos JSON {id && `- ${id}`}</h5>
+              </div>
               <div className="card-body">
-                <h5 className="card-title">¡Contenido colapsable!</h5>
-                <p className="card-text">
-                  Este es un ejemplo del componente Collapse de Bootstrap implementado en React.
-                  Utilizamos el hook <code>useState</code> para controlar el estado de visibilidad.
-                </p>
-                
-                <h6>Características:</h6>
-                <ul>
-                  <li>Animación suave al expandir / contraer</li>
-                  <li>Control total con React (useState)</li>
-                  <li>Fácil de personalizar</li>
-                  <li>Compatible con Bootstrap 5</li>
-                </ul>
-
-                <p className="text-muted small">
-                  Puedes poner aquí cualquier contenido: texto, imágenes, formularios, tablas, etc.
-                </p>
+                <div
+                  style={{
+                    backgroundColor: "#1e1e1e",
+                    color: "#0bfa02ff",
+                    padding: "15px",
+                    borderRadius: "6px",
+                    overflow: "auto",
+                    maxHeight: "600px",
+                    fontFamily: "'Courier New', monospace",
+                    fontSize: "12px",
+                    lineHeight: "1.5",
+                  }}
+                >
+                  <Collapse
+                    Texto="Mostrar Sprite"
+                    TextoEsconder="Esconder Sprite"
+                  >
+                    <strong> Sprite </strong>
+                    <Image url={dataJson.sprites.front_shiny} />
+                    <Image url={dataJson.sprites.back_shiny} />
+                  </Collapse>
+                </div>
               </div>
             </div>
           </div>
-
         </div>
-      </div>
+      )}
     </div>
   );
 }
