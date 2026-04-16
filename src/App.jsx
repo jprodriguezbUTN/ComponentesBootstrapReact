@@ -33,7 +33,7 @@ const tabs = [
   { label: "Collapse", to: "/Collapse" },
   { label: "Datalist", to: "/datalist" },
   { label: "Navtab", to: "/navtab" },
-  { label: "Offcanvas", to: "/offcanvas", disabled: true },
+  { label: "Offcanvas", to: "/offcanvas"},
   { label: "Progress", to: "/Progress" },
   { label: "Select", to: "/select" },
   { label: "Spinner", to: "/spinner" },
