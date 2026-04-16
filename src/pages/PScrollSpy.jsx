@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { data, useParams } from 'react-router-dom';
+import Image from "../Components/Images";
+import ScrollSpy from "../Components/ScrollSpy";
 
 export default function PPokemon() {
   const { id } = useParams();
@@ -14,7 +16,7 @@ export default function PPokemon() {
       setDataJson(null);
 
       try {
-        let url = "https://pokeapi.co/api/v2/pokemon/";
+        let url = "https://pokeapi.co/api/v2/pokemon?limit=5&offset=0";
         if (id) {
           url = `https://pokeapi.co/api/v2/pokemon/${id}`;
         }
@@ -90,7 +92,103 @@ export default function PPokemon() {
                   fontSize: '12px',
                   lineHeight: '1.5'
                 }}>
-                  <pre>{JSON.stringify(dataJson, null, 2)}</pre>
+                  <nav id='pokeNav'className="navbar navbar-light bg-light px-3 mt-3">
+                  <ul className="nav nav-pills">
+    
+                    <li className="nav-item">
+                      <a className="nav-link" href="#p1">{dataJson.results[0].name}</a>
+                    </li>
+
+                    <li className="nav-item">
+                      <a className="nav-link" href="#p2">{dataJson.results[1].name}</a>
+                    </li>
+
+                    <li className="nav-item">
+                      <a className="nav-link" href="#p3">{dataJson.results[2].name}</a>
+                    </li>
+
+                    <li className="nav-item">
+                      <a className="nav-link" href="#p4">{dataJson.results[3].name}</a>
+                    </li>
+
+                    <li className="nav-item">
+                      <a className="nav-link" href="#p5">{dataJson.results[4].name}</a>
+                    </li>
+
+                  </ul>
+                  </nav>
+
+                  <ScrollSpy target="pokeNav" height='400px'>
+
+                    <h4 id='p1'>{dataJson.results[0].name}</h4>
+
+                  
+
+                  <p>Prueba</p>
+                  <p>Prueba</p>
+                  <p>Prueba</p>
+                  <p>Prueba</p>
+                  <p>Prueba</p>
+                  <p>Prueba</p>
+                  <p>Prueba</p>
+                  <p>Prueba</p>
+                  <p>Prueba</p>
+                  <p>Prueba</p>
+                  <p>Prueba</p>
+
+                  <h4 id='p2'>{dataJson.results[1].name}</h4>
+                  <p>Prueba</p>
+                  <p>Prueba</p>
+                  <p>Prueba</p>
+                  <p>Prueba</p>
+                  <p>Prueba</p>
+                  <p>Prueba</p>
+                  <p>Prueba</p>
+                  <p>Prueba</p>
+                  <p>Prueba</p>
+                  <p>Prueba</p>
+                  <p>Prueba</p>
+
+                  <h4 id='p3'>{dataJson.results[2].name}</h4>
+                  <p>Prueba</p>
+                  <p>Prueba</p>
+                  <p>Prueba</p>
+                  <p>Prueba</p>
+                  <p>Prueba</p>
+                  <p>Prueba</p>
+                  <p>Prueba</p>
+                  <p>Prueba</p>
+                  <p>Prueba</p>
+                  <p>Prueba</p>
+                  <p>Prueba</p>
+
+                  <h4 id='p4'>{dataJson.results[3].name}</h4>
+                  <p>Prueba</p>
+                  <p>Prueba</p>
+                  <p>Prueba</p>
+                  <p>Prueba</p>
+                  <p>Prueba</p>
+                  <p>Prueba</p>
+                  <p>Prueba</p>
+                  <p>Prueba</p>
+                  <p>Prueba</p>
+                  <p>Prueba</p>
+                  <p>Prueba</p>
+
+                  <h4 id='p5'>{dataJson.results[4].name}</h4>
+                  <p>Prueba</p>
+                  <p>Prueba</p>
+                  <p>Prueba</p>
+                  <p>Prueba</p>
+                  <p>Prueba</p>
+                  <p>Prueba</p>
+                  <p>Prueba</p>
+                  <p>Prueba</p>
+                  <p>Prueba</p>
+                  <p>Prueba</p>
+                  <p>Prueba</p>
+
+                  </ScrollSpy>   
                 </div>
               </div>
             </div>
