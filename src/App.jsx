@@ -25,7 +25,8 @@ const PSelect = React.lazy(() => import("./pages/PSelect.jsx"));
 const PSpinner = React.lazy(() => import("./pages/PSpinner.jsx"));
 const PTable = React.lazy(() => import("./pages/PTable.jsx"));
 const PPopoverTooltips = React.lazy(() => import("./pages/PPopoverTooltips.jsx"));
-
+const PPokemon = React.lazy(() => import("./pages/PPokemon.jsx"));
+const PScrollSpy = React.lazy(() => import("./pages/PScrollSpy.jsx"));
 const tabs = [
   { label: "Home", to: "/", icon: "bi-house-fill" },
   { label: "Accordion", to: "/accordion" },
@@ -43,6 +44,8 @@ const tabs = [
   { label: "Table", to: "/table" },
   { label: "Images", to: "/images" },
   { label: "Popover & Tooltips", to: "/popover-tooltips" },
+  { label: "Pokemon", to: "/pokemon" },
+  { label: "ScrollSpy", to: "/ScrollSpy" }
 ];
 
 function App() {
@@ -93,10 +96,12 @@ function App() {
           <Route path="/navtab" element={<PNavtab />} />
           <Route path="/offcanvas" element={<POffcanvas />} />
           <Route path="/Progress" element={<PProgress />} />
+          <Route path="/Pokemon" element={<PPokemon />} />
           <Route path="/select" element={<PSelect />} />
           <Route path="/spinner" element={<PSpinner />} />
           <Route path="/table" element={<PTable />} />
           <Route path="/popover-tooltips" element={<PPopoverTooltips />} />
+          <Route path="/ScrollSpy" element={<PScrollSpy />} />
         </Routes>
       </Suspense>
     </BrowserRouter>
