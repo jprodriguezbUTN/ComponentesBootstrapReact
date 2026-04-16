@@ -1,6 +1,9 @@
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-
+import { data, useParams } from 'react-router-dom';
+import Image from "../Components/Images";
+import Card from "../Components/Card";
+import Button from "../Components/Button";
+import Collapse from "../Components/Collapse";
 export default function PPokemon() {
   const { id } = useParams();
   const [dataJson, setDataJson] = useState(null);
@@ -14,7 +17,7 @@ export default function PPokemon() {
       setDataJson(null);
 
       try {
-        let url = "https://pokeapi.co/api/v2/pokemon/";
+        let url = "https://pokeapi.co/api/v2/pokemon/4";
         if (id) {
           url = `https://pokeapi.co/api/v2/pokemon/${id}`;
         }
@@ -90,7 +93,15 @@ export default function PPokemon() {
                   fontSize: '12px',
                   lineHeight: '1.5'
                 }}>
-                  <pre>{JSON.stringify(dataJson, null, 2)}</pre>
+                    <Collapse Texto="descubre tu pokémon">
+                    <Card header={dataJson.name} titulo={dataJson.types[0].type.name} >
+                        <Image url={dataJson.sprites.front_default}></Image>
+                        <Button texto={dataJson.abilities[0].ability.name} ></Button>
+                    </Card>
+                    </Collapse>
+                    
+                    
+                    
                 </div>
               </div>
             </div>
