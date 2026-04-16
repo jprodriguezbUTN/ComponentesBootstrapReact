@@ -15,6 +15,7 @@ const PCard = React.lazy(() => import("./pages/PCard.jsx"));
 const PCarousel = React.lazy(() => import("./pages/PCarousel.jsx"));
 const PCollapse = React.lazy(() => import("./pages/PCollapse.jsx"));
 const PDatalist = React.lazy(() => import("./pages/PDatalist.jsx"));
+const PDropdown = React.lazy(() => import("./pages/PDropdown.jsx"));
 const PHome = React.lazy(() => import("./pages/PHome.jsx"));
 const PImages = React.lazy(() => import("./pages/PImages.jsx"));
 const PNavtab = React.lazy(() => import("./pages/PNavtab.jsx"));
@@ -32,6 +33,7 @@ const tabs = [
   { label: "Carousel", to: "/carousel",},
   { label: "Collapse", to: "/Collapse" },
   { label: "Datalist", to: "/datalist" },
+  { label: "Dropdown", to: "/dropdown" },
   { label: "Navtab", to: "/navtab" },
   { label: "Offcanvas", to: "/offcanvas"},
   { label: "Progress", to: "/Progress" },
@@ -84,6 +86,7 @@ function App() {
           <Route path="/carousel" element={<PCarousel />} />
           <Route path="/Collapse" element={<PCollapse />} />
           <Route path="/datalist" element={<PDatalist />} />
+          <Route path="/dropdown" element={<PDropdown />} />
           <Route path="/images" element={<PImages />} />
           <Route path="/navtab" element={<PNavtab />} />
           <Route path="/offcanvas" element={<POffcanvas />} />

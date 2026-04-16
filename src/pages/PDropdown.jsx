@@ -1,11 +1,12 @@
 import Dropdown from '../Components/Dropdown';
-import Buttons from '../Components/Buttons'; // Importas tu botón personalizado
+import Button from '../Components/Button';
 
 export default function PDropdown() {
     const misLinks = [
         { texto: "Calculo I", link: "/mate" },
         { texto: "Redes CCNA", link: "/redes" }
     ];
+    
 
     return (
         <div className="container mt-5 text-center">
@@ -16,21 +17,21 @@ export default function PDropdown() {
                 <div className="text-white">
                     <p>Dropdown</p>
                     <Dropdown posicion="down" opciones={misLinks} >
-                        <Buttons texto="Abajo" color="secondary" />
+                        <Button texto="Abajo" color="secondary" />
                     </Dropdown>
                 </div>
 
                 <div className="text-white">
                     <p>Dropup</p>
                     <Dropdown posicion="up" opciones={misLinks}>
-                        <Buttons texto="Arriba" color="primary" />
+                        <Button texto="Arriba" color="primary" />
                     </Dropdown>
                 </div>
 
                 <div className="text-white">
                     <p>Dropstart</p>
                     <Dropdown posicion="left" opciones={misLinks}>
-                        <Buttons texto="Izquierda" color="info" />
+                        <Button texto="Izquierda" color="info" />
                     </Dropdown>
                 </div>
 
@@ -38,7 +39,7 @@ export default function PDropdown() {
                 <div className="text-white">
                     <p>Dropend</p>
                     <Dropdown posicion="right" opciones={misLinks} >
-                        <Buttons texto="Derecha" color="warning" />
+                        <Button texto="Derecha" color="warning" />
                     </Dropdown>
                 </div>
 
