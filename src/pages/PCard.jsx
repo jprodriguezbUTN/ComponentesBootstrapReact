@@ -93,7 +93,7 @@ export default function PPokemon() {
                   lineHeight: '1.5'
                 }}>
                   
-                  <Card bg="text-bg-warning " colorTexto="text-black"
+                  <Card bg="amarillo" colorTexto="negro"
                     header={dataJson.name.toUpperCase()}
                     titulo={dataJson.abilities[0].ability.name.toUpperCase()}
                     texto={dataJson.base_experience}
