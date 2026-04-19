@@ -1,99 +1,112 @@
-import Card from "../Components/Card"
-import Imagenes from "../Components/Images"
+import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import Card from '../Components/Card';
+import Imagenes from '../Components/Images';
+import Button from '../Components/Button';
 
-export default function PCard() {
+export default function PPokemon() {
+  const { id } = useParams();
+  const [dataJson, setDataJson] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      setError(null);
+      setDataJson(null);
+
+      try {
+        let url = "https://pokeapi.co/api/v2/pokemon/25  ";
+        if (id) {
+          url = `https://pokeapi.co/api/v2/pokemon/${id}`;
+        }
+
+        const response = await fetch(url);
+
+        if (!response.ok) {
+          throw new Error('Error al obtener los datos');
+        }
+
+        const data = await response.json();
+        setDataJson(data);
+        console.log('Datos descargados:', data);
+      } catch (err) {
+        setError(err.message || 'Error al obtener los datos');
+        setDataJson(null);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, [id]);
+
   return (
-    <div className="container mt-5">
-      <h1 className="mb-4">Componente Card</h1>
-
-      <div className="row gap-4">
-        {/* Card con imagen y contenido */}
-        <div className="col-12 col-md-4 mb-4">
-          <Card 
-            titulo="Tarjeta con Imagen"
-            texto="Esta tarjeta tiene imagen, título y descripción"
-            bg="bg-white"
-            colorTexto="text-dark"
-          >
-            <Imagenes 
-              url="https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Events/2025/JumpIn/UnifiedExperience/JumIn_Indonesia/Fuji_Desktop_JIIN_SingleImageCard_1x_EN._SY304_CB793605597_.jpg" 
-              tipo="Redondo"
-              bordes="SinBordes"
-              clases="Responsivo"
-              ancho="100%"
-              alto="200px"
-            />
-          </Card>
-        </div>
-
-        {/* Card solo con texto */}
-        <div className="col-12 col-md-4 mb-4">
-          <Card 
-            titulo="Tarjeta Simple"
-            texto="Esta tarjeta solo tiene texto, sin imagen"
-            bg="bg-light"
-            colorTexto="text-dark"
-          />
-        </div>
-
-        {/* Card con header y footer */}
-        <div className="col-12 col-md-4 mb-4">
-          <Card 
-            header="Encabezado de la Tarjeta"
-            titulo="Contenido Principal"
-            texto="Tarjeta con header y footer"
-            footer="Pie de página"
-            bg="bg-primary"
-            colorTexto="text-white"
-          />
-        </div>
-
-        {/* Card con imagen redondeada y bordes */}
-        <div className="col-12 col-md-4 mb-4">
-          <Card 
-            titulo="Imagen Redondeada"
-            texto="Imagen con bordes redondeados y thumbnail"
-          >
-            <Imagenes 
-              url="https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Events/2025/JumpIn/UnifiedExperience/JumIn_Indonesia/Fuji_Desktop_JIIN_SingleImageCard_1x_EN._SY304_CB793605597_.jpg" 
-              tipo="Redondo"
-              bordes="ConBordes"
-              clases="Centro"
-              ancho="100%"
-              alto="180px"
-            />
-          </Card>
-        </div>
-
-        {/* Card con imagen a la izquierda */}
-        <div className="col-12 col-md-4 mb-4">
-          <Card 
-            titulo="Imagen Flotante"
-            texto="La imagen flota hacia la izquierda"
-          >
-            <Imagenes 
-              url="https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Events/2025/JumpIn/UnifiedExperience/JumIn_Indonesia/Fuji_Desktop_JIIN_SingleImageCard_1x_EN._SY304_CB793605597_.jpg" 
-              tipo="Normal"
-              bordes="SinBordes"
-              clases="Izquierda"
-              ancho="150px"
-              alto="150px"
-            />
-          </Card>
-        </div>
-
-        {/* Card con contenido personalizado */}
-        <div className="col-12 col-md-4 mb-4">
-          <Card 
-            titulo="Card Personalizado"
-            bg="bg-success"
-            colorTexto="text-white"
-          >
-            <p>Contenido personalizado con elementos adicionales</p>
-            <button className="btn btn-light btn-sm">Más info</button>
-          </Card>
+    <div className="container mt-5 pb-5">
+      <div className="row mb-5">
+        <div className="col-md-10 mx-auto">
+          <h1 className="display-5 mb-4">
+            <i className="bi bi-fire"></i> Pokedex API
+            <span className="badge bg-danger ms-3">JSON</span>
+          </h1>
         </div>
       </div>
+      
+      {loading && (
+        <div className="row mb-4">
+          <div className="col-md-10 mx-auto">
+            <div className="alert alert-info">
+              <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+              Cargando datos...
+            </div>
+          </div>
+        </div>
+      )}
+
+      {error && (
+        <div className="row mb-4">
+          <div className="col-md-10 mx-auto">
+            <div className="alert alert-danger">
+              Error: {error}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {dataJson && (
+        <div className="row mb-4">
+          <div className="col-md-10 mx-auto">
+            <div className="card border-success">
+              <div className="card-header bg-success text-white">
+                <h5 className="mb-0">📋 Datos JSON {id && `- ${id}`}</h5>
+              </div>
+              <div className="card-body">
+                <div style={{
+                  color: '#d4d4d4',
+                  padding: '15px',
+                  borderRadius: '6px',
+                  overflow: 'auto',
+                  maxHeight: '600px',
+                  fontFamily: "'Courier New', monospace",
+                  fontSize: '12px',
+                  lineHeight: '1.5'
+                }}>
+                  
+                  <Card bg="text-bg-warning " colorTexto="text-black"
+                    header={dataJson.name.toUpperCase()}
+                    titulo={dataJson.abilities[0].ability.name.toUpperCase()}
+                    texto={dataJson.base_experience}
+                    footer={dataJson.types[0].type.name.toUpperCase()}>
+                    <Imagenes url={dataJson.sprites.front_default}></Imagenes>
+                  </Card> 
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
-  )
+  );
 }
