@@ -1,260 +1,140 @@
-import React, { useState } from "react";
-import Spinner from "../Components/Snipper.jsx";
+import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import Card from '../Components/Card';
+import Imagenes from '../Components/Images';
+import Spinner from '../Components/Snipper';
 
-export default function PSpinner() {
-  const [loginLoading, setLoginLoading] = useState(false);
-  const [submitLoading, setSubmitLoading] = useState(false);
+export default function PPokemon() {
+  const { id } = useParams();
+  const [dataJson, setDataJson] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  const handleLogin = () => {
-    setLoginLoading(true);
-    setTimeout(() => setLoginLoading(false), 2000);
-  };
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      setError(null);
+      setDataJson(null);
 
-  const handleSubmit = () => {
-    setSubmitLoading(true);
-    setTimeout(() => setSubmitLoading(false), 2000);
-  };
+      try {
+        let url = "https://pokeapi.co/api/v2/pokemon/8";
+        if (id) {
+          url = `https://pokeapi.co/api/v2/pokemon/${id}`;
+        }
+
+        const response = await fetch(url);
+
+        if (!response.ok) {
+          throw new Error('Error al obtener los datos');
+        }
+
+        const data = await response.json();
+        
+        // Simular delay de 3 segundos para ver el spinner
+        await new Promise(resolve => setTimeout(resolve, 3000));
+
+        setDataJson(data);
+        console.log('Datos descargados:', data);
+      } catch (err) {
+        setError(err.message || 'Error al obtener los datos');
+        setDataJson(null);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, [id]);
 
   return (
-    <div className="container-fluid py-5 bg-light">
-      <h1 className="mb-5 text-center">
-        <i className="bi bi-arrow-repeat"></i> Ejemplos de uso Spinner
-      </h1>
-
-      <div className="row g-4">
-        {/* Ejemplo 1: Login */}
-        <div className="col-lg-6">
-          <div className="card shadow-lg">
-            <div className="card-header bg-primary text-white">
-              <h5 className="mb-0">
-                <i className="bi bi-box-arrow-in-right"></i> Formulario de Login
-              </h5>
-            </div>
-            <div className="card-body">
-              <form onSubmit={(e) => { e.preventDefault(); handleLogin(); }}>
-                <div className="mb-3">
-                  <label className="form-label">Usuario</label>
-                  <input 
-                    type="email" 
-                    className="form-control" 
-                    placeholder="correo@ejemplo.com"
-                    disabled={loginLoading}
-                  />
-                </div>
-                <div className="mb-3">
-                  <label className="form-label">Contraseña</label>
-                  <input 
-                    type="password" 
-                    className="form-control" 
-                    placeholder="••••••••"
-                    disabled={loginLoading}
-                  />
-                </div>
-                <button 
-                  type="submit" 
-                  className="btn btn-primary w-100"
-                  disabled={loginLoading}
-                >
-                  {loginLoading ? (
-                    <>
-                      <Spinner 
-                        type="border" 
-                        color="light" 
-                        size="sm" 
-                        className="me-2"
-                      />
-                      Iniciando sesión...
-                    </>
-                  ) : (
-                    "Iniciar Sesión"
-                  )}
-                </button>
-              </form>
-            </div>
-          </div>
-        </div>
-
-        {/* Ejemplo 2: Cargar Datos */}
-        <div className="col-lg-6">
-          <div className="card shadow-lg">
-            <div className="card-header bg-info text-white">
-              <h5 className="mb-0">
-                <i className="bi bi-cloud-download"></i> Cargando Datos
-              </h5>
-            </div>
-            <div className="card-body">
-              <div className="text-center py-5">
-                <Spinner 
-                  type="grow" 
-                  color="info" 
-                  label="Cargando datos..."
-                  as="div"
-                />
-                <p className="mt-3 text-muted">Obteniendo información del servidor...</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Ejemplo 3: Formulario de Registro */}
-        <div className="col-lg-6">
-          <div className="card shadow-lg">
-            <div className="card-header bg-success text-white">
-              <h5 className="mb-0">
-                <i className="bi bi-person-plus"></i> Formulario de Registro
-              </h5>
-            </div>
-            <div className="card-body">
-              <form onSubmit={(e) => { e.preventDefault(); handleSubmit(); }}>
-                <div className="mb-3">
-                  <label className="form-label">Nombre Completo</label>
-                  <input 
-                    type="text" 
-                    className="form-control" 
-                    placeholder="Juan Pérez"
-                    disabled={submitLoading}
-                  />
-                </div>
-                <div className="mb-3">
-                  <label className="form-label">Email</label>
-                  <input 
-                    type="email" 
-                    className="form-control" 
-                    placeholder="juan@ejemplo.com"
-                    disabled={submitLoading}
-                  />
-                </div>
-                <div className="mb-3">
-                  <label className="form-label">Contraseña</label>
-                  <input 
-                    type="password" 
-                    className="form-control" 
-                    placeholder="••••••••"
-                    disabled={submitLoading}
-                  />
-                </div>
-                <button 
-                  type="submit" 
-                  className="btn btn-success w-100"
-                  disabled={submitLoading}
-                >
-                  {submitLoading ? (
-                    <>
-                      <Spinner 
-                        type="border" 
-                        color="light" 
-                        size="sm" 
-                        className="me-2"
-                      />
-                      Creando cuenta...
-                    </>
-                  ) : (
-                    "Registrarse"
-                  )}
-                </button>
-              </form>
-            </div>
-          </div>
-        </div>
-
-        {/* Ejemplo 4: Procesando Pago */}
-        <div className="col-lg-6">
-          <div className="card shadow-lg">
-            <div className="card-header bg-warning text-dark">
-              <h5 className="mb-0">
-                <i className="bi bi-credit-card"></i> Procesando Pago
-              </h5>
-            </div>
-            <div className="card-body">
-              <div className="text-center py-5">
-                <Spinner 
-                  type="border" 
-                  color="warning" 
-                  label="Procesando pago..."
-                  as="div"
-                />
-                <p className="mt-3 text-muted">Por favor espera mientras procesamos tu pago...</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Ejemplo 5: En Tabla */}
-        <div className="col-lg-6">
-          <div className="card shadow-lg">
-            <div className="card-header bg-secondary text-white">
-              <h5 className="mb-0">
-                <i className="bi bi-table"></i> Tabla con Carga
-              </h5>
-            </div>
-            <div className="card-body">
-              <table className="table table-striped">
-                <thead>
-                  <tr>
-                    <th>ID</th>
-                    <th>Nombre</th>
-                    <th>Estado</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>1</td>
-                    <td>Producto A</td>
-                    <td>
-                      <Spinner type="border" color="primary" size="sm" />
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>2</td>
-                    <td>Producto B</td>
-                    <td>
-                      <span className="badge bg-success">Activo</span>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-
-        {/* Ejemplo 6: Estados de Carga */}
-        <div className="col-lg-6">
-          <div className="card shadow-lg">
-            <div className="card-header bg-danger text-white">
-              <h5 className="mb-0">
-                <i className="bi bi-lightning"></i> Diferentes Estados
-              </h5>
-            </div>
-            <div className="card-body">
-              <div className="mb-3">
-                <small className="text-muted d-block mb-2">Pequeño:</small>
-                <button className="btn btn-sm btn-secondary" disabled>
-                  <Spinner type="border" size="sm" className="me-2" />
-                  Guardando...
-                </button>
-              </div>
-              <div className="mb-3">
-                <small className="text-muted d-block mb-2">Normal:</small>
-                <button className="btn btn-secondary" disabled>
-                  <Spinner type="grow" className="me-2" />
-                  Procesando...
-                </button>
-              </div>
-              <div>
-                <small className="text-muted d-block mb-2">Colores:</small>
-                <button className="btn btn-success btn-sm me-2" disabled>
-                  <Spinner type="border" color="light" size="sm" className="me-1" />
-                  Éxito
-                </button>
-                <button className="btn btn-danger btn-sm" disabled>
-                  <Spinner type="grow" color="light" size="sm" className="me-1" />
-                  Error
-                </button>
-              </div>
-            </div>
-          </div>
+    <div className="container mt-5 pb-5">
+      <div className="row mb-5">
+        <div className="col-md-10 mx-auto">
+          <h1 className="display-5 mb-4">
+            <i className="bi bi-fire"></i> Pokedex API
+            <span className="badge bg-danger ms-3">JSON</span>
+          </h1>
         </div>
       </div>
+
+      {loading && (
+        <div className="row mb-4">
+          <div className="col-md-10 mx-auto text-center py-5">
+            <Spinner 
+              type="border" 
+              color="primary" 
+              size=""
+              className="mb-3"
+            />
+            <p>Cargando datos del Pokémon...</p>
+          </div>
+        </div>
+      )}
+
+      {error && (
+        <div className="row mb-4">
+          <div className="col-md-10 mx-auto">
+            <div className="alert alert-danger">
+              Error: {error}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {dataJson && (
+        <div className="row mb-4">
+          <div className="col-md-10 mx-auto">
+            <div className="card border-success">
+              <div className="card-header bg-success text-white">
+                <h5 className="mb-0">📋 Datos JSON {id && `- ${id}`}</h5>
+              </div>
+              <div className="card-body">
+                <div className="row">
+                  <div className="col-md-6 mb-3">
+
+                    <Card 
+                      header={`Pokémon #${dataJson.id}`}
+                      titulo={dataJson.name.toUpperCase()}
+                      texto={`Altura: ${dataJson.height / 10}m | Peso: ${dataJson.weight / 10}kg`}
+                      bg="bg-success" 
+                      colorTexto="text-white"
+                    >
+                      {dataJson.sprites?.front_default && (
+                        <div className="text-center mb-3">
+                          <Imagenes 
+                            url={dataJson.sprites.front_default} 
+                            alt={dataJson.name}
+                            tipo="Centro"
+                            ancho="150px"
+                            alto="150px"
+                          />
+                        </div>
+                      )}
+                    </Card>
+
+                  </div>
+                  
+                  <div className="col-md-6 mb-3">
+                    <div style={{
+                      backgroundColor: '#1e1e1e',
+                      color: '#d4d4d4',
+                      padding: '15px',
+                      borderRadius: '6px',
+                      overflow: 'auto',
+                      maxHeight: '600px',
+                      fontFamily: "'Courier New', monospace",
+                      fontSize: '12px',
+                      lineHeight: '1.5'
+                    }}>
+                      <pre>{JSON.stringify(dataJson, null, 2)}</pre>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

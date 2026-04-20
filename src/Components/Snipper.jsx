@@ -3,7 +3,6 @@ export default function Spinner({
   color = 'primary', // primary, secondary, success, danger, etc.
   size = '',         // 'sm' para pequeño, vacío para normal
   className = '',    // para márgenes o alineación extra (m-5, float-end)
-  label = 'Loading...', //Texto a mostrar
   as = 'span'
 }) {
   const Component = as;
@@ -18,7 +17,6 @@ export default function Spinner({
       role="status" 
       aria-hidden={as === 'span' ? "true" : "false"}
     >
-      <span className="visually-hidden">{label}</span>
     </Component>
   );
 }
