@@ -50,18 +50,66 @@ export default function Carousel({
   }, [tiempo]);
 
   return (
-    <div ref={contenedorRef}>
+    <div ref={contenedorRef} style={{
+      position: "relative",
+      width: "100%",
+      maxWidth: "600px",
+      margin: "0 auto"
+    }}>
 
       {/* CONTENIDO */}
-      <div>
+      <div style={{
+        position: "relative",
+        width: "100%"
+      }}>
         {children}
       </div>
 
-      {/* BOTONES */}
-      <div>
-        <Botones texto="Anterior" onClick={anterior} />
-        <Botones texto="Siguiente" onClick={siguiente} />
-      </div>
+      {/* BOTÓN ANTERIOR */}
+      <button 
+        onClick={anterior}
+        style={{
+          position: "absolute",
+          left: "-50px",
+          top: "50%",
+          transform: "translateY(-50%)",
+          background: "rgba(0, 0, 0, 0.4)",
+          border: "none",
+          color: "white",
+          fontSize: "24px",
+          padding: "10px 14px",
+          borderRadius: "4px",
+          cursor: "pointer",
+          transition: "all 0.3s ease"
+        }}
+        onMouseEnter={(e) => e.target.style.background = "rgba(0, 0, 0, 0.7)"}
+        onMouseLeave={(e) => e.target.style.background = "rgba(0, 0, 0, 0.4)"}
+      >
+        &lt;
+      </button>
+
+      {/* BOTÓN SIGUIENTE */}
+      <button 
+        onClick={siguiente}
+        style={{
+          position: "absolute",
+          right: "-50px",
+          top: "50%",
+          transform: "translateY(-50%)",
+          background: "rgba(0, 0, 0, 0.4)",
+          border: "none",
+          color: "white",
+          fontSize: "24px",
+          padding: "10px 14px",
+          borderRadius: "4px",
+          cursor: "pointer",
+          transition: "all 0.3s ease"
+        }}
+        onMouseEnter={(e) => e.target.style.background = "rgba(0, 0, 0, 0.7)"}
+        onMouseLeave={(e) => e.target.style.background = "rgba(0, 0, 0, 0.4)"}
+      >
+        &gt;
+      </button>
 
     </div>
   );
