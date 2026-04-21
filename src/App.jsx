@@ -27,6 +27,7 @@ const PTable = React.lazy(() => import("./pages/PTable.jsx"));
 const PPopoverTooltips = React.lazy(() => import("./pages/PPopoverTooltips.jsx"));
 const PPokemon = React.lazy(() => import("./pages/PPokemon.jsx"));
 const PScrollSpy = React.lazy(() => import("./pages/PScrollSpy.jsx"));
+const PButton = React.lazy(() => import("./pages/PButton.jsx"));
 const tabs = [
   { label: "Home", to: "/", icon: "bi-house-fill" },
   { label: "Accordion", to: "/accordion" },
@@ -45,7 +46,9 @@ const tabs = [
   { label: "Images", to: "/images" },
   { label: "Popover & Tooltips", to: "/popover-tooltips" },
   { label: "Pokemon", to: "/pokemon" },
+  { label: "Button", to: "/button" },
   { label: "ScrollSpy", to: "/ScrollSpy" }
+  
 ];
 
 function App() {
@@ -102,6 +105,7 @@ function App() {
           <Route path="/table" element={<PTable />} />
           <Route path="/popover-tooltips" element={<PPopoverTooltips />} />
           <Route path="/ScrollSpy" element={<PScrollSpy />} />
+          <Route path="/button" element={<PButton />} />
         </Routes>
       </Suspense>
     </BrowserRouter>
