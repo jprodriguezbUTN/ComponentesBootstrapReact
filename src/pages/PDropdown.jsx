@@ -1,49 +1,123 @@
-import Dropdown from '../Components/Dropdown';
-import Button from '../Components/Button';
+import { useState, useEffect } from 'react';
+import { data, useParams } from 'react-router-dom';
+import Image from "../Components/Images";
+import Card from "../Components/Card";
+import Button from "../Components/Button";
+import Collapse from "../Components/Collapse";
+import Dropdown from "../Components/Dropdown";
+export default function PPokemon() {
+  const { id } = useParams();
+  const [dataJson, setDataJson] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-export default function PDropdown() {
-    const misLinks = [
-        { texto: "Calculo I", link: "/mate" },
-        { texto: "Redes CCNA", link: "/redes" }
-    ];
-    
+ 
+  const habilidadesPokemon = dataJson?.abilities.map((habilidad) => ({
+    texto: habilidad.ability.name,
+    link: habilidad.ability.url
+  })) || [];
 
-    return (
-        <div className="container mt-5 text-center">
-            <h2 className="text-black mb-5">Variaciones de Dropdown</h2>
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      setError(null);
+      setDataJson(null);
 
-            <div className="d-flex justify-content-around align-items-center bg-dark p-5 rounded">
+      try {
+        let url = "https://pokeapi.co/api/v2/pokemon/4";
+        if (id) {
+          url = `https://pokeapi.co/api/v2/pokemon/${id}`;
+        }
 
-                <div className="text-white">
-                    <p>Dropdown</p>
-                    <Dropdown posicion="down" opciones={misLinks} >
-                        <Button texto="Abajo" color="secondary" />
-                    </Dropdown>
-                </div>
+        const response = await fetch(url);
 
-                <div className="text-white">
-                    <p>Dropup</p>
-                    <Dropdown posicion="up" opciones={misLinks}>
-                        <Button texto="Arriba" color="primary" />
-                    </Dropdown>
-                </div>
+        if (!response.ok) {
+          throw new Error('Error al obtener los datos');
+        }
 
-                <div className="text-white">
-                    <p>Dropstart</p>
-                    <Dropdown posicion="left" opciones={misLinks}>
-                        <Button texto="Izquierda" color="info" />
-                    </Dropdown>
-                </div>
+        const data = await response.json();
+        setDataJson(data);
+        console.log('Datos descargados:', data);
+      } catch (err) {
+        setError(err.message || 'Error al obtener los datos');
+        setDataJson(null);
+      } finally {
+        setLoading(false);
+      }
+    };
 
+    fetchData();
+  }, [id]);
 
-                <div className="text-white">
-                    <p>Dropend</p>
-                    <Dropdown posicion="right" opciones={misLinks} >
-                        <Button texto="Derecha" color="warning" />
-                    </Dropdown>
-                </div>
-
-            </div>
+  return (
+    <div className="container mt-5 pb-5">
+      <div className="row mb-5">
+        <div className="col-md-10 mx-auto">
+          <h1 className="display-5 mb-4">
+            <i className="bi bi-fire"></i> Pokedex API
+            <span className="badge bg-danger ms-3">JSON</span>
+          </h1>
         </div>
-    );
+      </div>
+
+      {loading && (
+        <div className="row mb-4">
+          <div className="col-md-10 mx-auto">
+            <div className="alert alert-info">
+              <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+              Cargando datos...
+            </div>
+          </div>
+        </div>
+      )}
+
+      {error && (
+        <div className="row mb-4">
+          <div className="col-md-10 mx-auto">
+            <div className="alert alert-danger">
+              Error: {error}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {dataJson && (
+        <div className="row mb-4">
+          <div className="col-md-10 mx-auto">
+            <div className="card border-success">
+              <div className="card-header bg-success text-white">
+                <h5 className="mb-0">📋 Datos JSON {id && `- ${id}`}</h5>
+              </div>
+              <div className="card-body">
+                <div style={{
+                  backgroundColor: '#1e1e1e',
+                  color: '#d4d4d4',
+                  padding: '15px',
+                  borderRadius: '6px',
+                  overflow: 'auto',
+                  maxHeight: '600px',
+                  fontFamily: "'Courier New', monospace",
+                  fontSize: '12px',
+                  lineHeight: '1.5'
+                }}>
+
+
+                  <Card header={dataJson.name} titulo={dataJson.types[0].type.name} >
+                    <Image url={dataJson.sprites.front_default}></Image>
+                    <Dropdown posicion="down" opciones={habilidadesPokemon}>
+                      <Button texto="Abilities" color='primary'  ></Button>
+                    </Dropdown>
+                  </Card>
+
+
+
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
 }
