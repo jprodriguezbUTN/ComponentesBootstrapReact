@@ -29,6 +29,7 @@ const PPokemon = React.lazy(() => import("./pages/PPokemon.jsx"));
 const PScrollSpy = React.lazy(() => import("./pages/PScrollSpy.jsx"));
 const PButton = React.lazy(() => import("./pages/PButton.jsx"));
 const PForm = React.lazy(() => import("./pages/PForm.jsx"));
+const PBreadcrumb = React.lazy(() => import("./pages/PBreadcrumb.jsx"));
 const tabs = [
   { label: "Home", to: "/", icon: "bi-house-fill" },
   { label: "Accordion", to: "/accordion" },
@@ -42,6 +43,7 @@ const tabs = [
   { label: "Offcanvas", to: "/offcanvas"},
   { label: "Progress", to: "/Progress" },
   { label: "Select", to: "/select" },
+  { label: "Breadcrumb", to: "/breadcrumb" },
   { label: "Spinner", to: "/spinner" },
   { label: "Table", to: "/table" },
   { label: "Images", to: "/images" },
@@ -102,6 +104,7 @@ function App() {
           <Route path="/Progress" element={<PProgress />} />
           <Route path="/Pokemon" element={<PPokemon />} />
           <Route path="/select" element={<PSelect />} />
+          <Route path="/breadcrumb" element={<PBreadcrumb />} />
           <Route path="/spinner" element={<PSpinner />} />
           <Route path="/table" element={<PTable />} />
           <Route path="/popover-tooltips" element={<PPopoverTooltips />} />
